@@ -1,0 +1,35 @@
+{
+  "colors": {
+    "default": {
+      "theme_color": {
+        "color_1": "#7f2346",
+        "color_2": "#ffe8cf",
+        "color_3": "#ffa168",
+        "color_4": "#f88d2b",
+        "color_5": "#e0592a",
+        "color_6": "#9bae88",
+        "color_7": "#5a5a5a",
+        "color_8": "#fff3e7"
+      },
+      "text_color": {
+        "default": "#292929",
+        "dark": "#222",
+        "light": "#ceced0",
+        "brandblue": "#001e61"
+      }
+    }
+  },
+
+  "fonts": {
+    "font_family": {
+      "primary": "Nunito Sans:wght@400;500;600;700",
+      "primary_type": "sans-serif",
+      "secondary": "Merriweather:wght@700;900",
+      "secondary_type": "sans-serif"
+    },
+    "font_size": {
+      "base": "16",
+      "scale": "1.24571"
+    }
+  }
+}
