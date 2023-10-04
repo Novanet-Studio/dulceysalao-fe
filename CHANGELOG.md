@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2023-10-04)
+
+
+### Features
+
+* apply app-message styles ([bf3777d](https://github.com/Novanet-Studio/dulceysalao-fe/commit/bf3777dfaeffb012f551257f2077c525f77367cc))
+* apply styles for home and nosotros ([2581104](https://github.com/Novanet-Studio/dulceysalao-fe/commit/2581104b80ca0c35175f45c86c8a28f830638cc9))
+
 ## [2.11.0](https://github.com/Novanet-Studio/fast-ecommerce-fe/compare/v2.10.0...v2.11.0) (2023-04-20)
 
 
