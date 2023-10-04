@@ -29,7 +29,7 @@ const appConfig = useAppConfig();
 
 <style scoped>
 .copyright {
-  @apply py-8 border-t border-t-color-7 text-center bg-color-2 text-white;
+  @apply py-8 border-t border-t-color-7 text-center bg-color-1 text-white;
 }
 
 .copyright__site {

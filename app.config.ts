@@ -4,28 +4,27 @@ export default defineAppConfig({
   },
   footer: {
     copyright: {
-      site: 'dulcesysalados.com',
+      site: 'Dulce y Salao',
     },
     widgets: [
-      {
-        link: 'https://www.instagram.com/dulcesysalados/',
-        icon: 'instagram',
-        text: '@dulcesysalados',
-      },
       {
         link: 'https://wa.me/message/XTA7RUDHZKT4C3',
         icon: 'whatsapp',
         text: '+58 424-154-1000',
       },
       {
-        link: 'https://www.facebook.com/dulcesysalados',
-        icon: 'facebook',
-        text: 'dulcesysalados',
+        link: 'mailto:dulcesysalados@gmail.com',
+        icon: 'email',
+        text: 'dulcesysalados@gmail.com',
+      },
+      {
+        link: 'https://www.instagram.com/dulcesysalados',
+        icon: 'instagram',
+        text: '@dulcesysalados',
       },
     ],
   },
   home: {
     slider: ['/img/home/1.png', '/img/home/2.png'],
-    promotions: ['/img/home/promotion-1.jpeg'],
   },
 });

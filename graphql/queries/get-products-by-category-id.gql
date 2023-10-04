@@ -6,6 +6,7 @@ query GetProductsByCategoryId($id: ID!) {
         name
         description
         price
+        gluten
         images {
           data {
             attributes {

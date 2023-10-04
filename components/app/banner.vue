@@ -13,28 +13,11 @@ const appConfig = useAppConfig();
 </template>
 
 <style scoped>
-/* Set color for swiper arrows */
-:global(.swiper-button-next),
-:global(.swiper-button-prev) {
-  --swiper-navigation-size: 2rem;
-  --swiper-navigation-color: #161824;
-  @apply transition;
-}
-
-:global(.swiper-button-next:hover),
-:global(.swiper-button-prev:hover) {
-  --swiper-navigation-color: #e36d65;
-}
-
-:deep(.swiper-button-next),
-:deep(.swiper-button-prev) {
-  --swiper-navigation-sides-offset: 0;
-  @apply p-8 transition hover:(bg-color-1);
-}
-
-:deep(.swiper-button-next:hover),
-:deep(.swiper-button-prev:hover) {
-  --swiper-navigation-color: #161824;
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  --swiper-navigation-size: 1.5rem;
+  --swiper-navigation-color: #f2f2f2;
+  @apply bg-color-1 p-2;
 }
 
 .banner {

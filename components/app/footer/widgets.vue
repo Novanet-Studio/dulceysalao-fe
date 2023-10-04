@@ -8,10 +8,6 @@ const icons = {
   email: 'i-ph-envelope',
   facebook: 'i-ph-facebook-logo',
 };
-
-// Phone -> 584241548330
-// Instagram -> https://www.instagram.com/ccsmultisport
-// Facebook -> https://www.facebook.com/CcsMultiSport
 </script>
 
 <template>
@@ -19,10 +15,14 @@ const icons = {
     <aside class="widgets__wrapper">
       <h3 class="widgets__title">Contáctanos</h3>
       <ul class="widgets__list">
-        <li v-for="(item, index) in widgets" :key="index" class="widgets__item">
+        <li
+          v-for="(item, index) in widgets"
+          :key="index"
+          class="bg-color-4 px-2 py-2"
+        >
           <a class="widgets__link" :href="item.link" target="_blank">
-            <div :class="icons[item.icon]" class="text-3xl text-color-3" />
-            <span class="text-xs md:text-sm">{{ item.text }}</span>
+            <div :class="icons[item.icon]" class="text-3xl text-color-2" />
+            <!-- <span class="text-xs md:text-sm">{{ item.text }}</span> -->
           </a>
         </li>
       </ul>
@@ -44,7 +44,7 @@ const icons = {
 }
 
 .widgets__list {
-  @apply w-full flex justify-center gap-4 mt-2 md:(mt-4 gap-6);
+  @apply w-full flex justify-center gap-4 mt-2 md:(mt-4 gap-4);
 }
 
 .widgets__link {

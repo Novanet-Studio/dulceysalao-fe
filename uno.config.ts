@@ -117,9 +117,9 @@ export default defineConfig({
     'main-gradient':
       'p-8 rounded-2xl bg-gradient-linear bg-gradient-from-[#FFFFFF] bg-gradient-from-[#E6E7E8]',
     'header-actions__link': 'flex relative transition ease',
-    'header-actions__icon': 'text-4xl md:text-[2.45rem] text-black',
+    'header-actions__icon': 'text-4xl md:text-[2.45rem]',
     'header-actions__indicator-wrapper':
-      'absolute bottom-0 -right-[3px] flex justify-center items-center w-[20px] h-[20px] text-white bg-color-2 rounded-full',
+      'absolute bottom-0 -right-[3px] flex justify-center items-center w-[20px] h-[20px] bg-color-2 rounded-full text-color-1',
     'header-actions__indicator': 'text-xs leading-4 font-medium not-italic',
 
     'input-group': 'py-3 pt-2 first:mb-4',

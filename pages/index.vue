@@ -9,20 +9,27 @@ const {
 } = useCategory({
   ordered: true,
 });
+
+const minOrderLimit = [
+  'mini tartaletas',
+  'mini tortas criollas',
+  'galleticas',
+  'varios / 50 piezas',
+];
 </script>
 
 <template>
   <div>
     <app-banner />
     <section class="contenedor">
-      <app-message>
+      <app-message class="mt-18">
         En Dulce y Salao, nos apasiona crear experiencias inolvidables a través
         de nuestros productos criollos.
       </app-message>
       <product-loader v-if="isLoading" />
       <div id="parent" v-if="!isLoading && categories.length">
         <div class="flex items-center justify-between mt-8">
-          <h3 class="ml-5 text-color-2 font-900 text-2xl">Categorías</h3>
+          <h3 class="ml-5 text-color-1 font-900 text-2xl">Categorías</h3>
           <transition name="slide-fade">
             <button
               class="block text-xs border border-color-3 px-2 py-1 rounded-xl text-color-3 md:(px-4 py-2 rounded-full) lg:(transition ease hover:(bg-color-3/10))"
@@ -34,7 +41,7 @@ const {
           </transition>
         </div>
         <div
-          class="grid grid-cols-3 place-items-center content-center mt-4 md:(max-w-3xl mx-auto grid-cols-5) lg:(mx-none grid-cols-6)"
+          class="grid grid-cols-3 place-items-center content-center mt-4 mb-24 md:(max-w-3xl mx-auto grid-cols-5) lg:(mx-none max-w-full grid-cols-9)"
         >
           <button
             v-for="category in categories"
@@ -45,8 +52,8 @@ const {
               class="w-20 h-20 rounded-full object-cover border-3 md:(w-30 h-30)"
               :class="
                 category.id === categoryActive
-                  ? 'border-color-3'
-                  : 'border-color-5'
+                  ? 'border-color-1'
+                  : 'border-transparent'
               "
               :src="category.products[0].images[0].url"
             />
@@ -58,7 +65,23 @@ const {
         </div>
         <transition-group name="list" tag="div">
           <product-landing
-            v-for="category in categoriesResult"
+            v-for="category in categoriesResult.filter(
+              (c) => !minOrderLimit.includes(c.name.toLowerCase())
+            )"
+            :key="category.id"
+            :category="category"
+            :filtered="!!categoryActive"
+            @filter="filterByCategory(category.id, '#parent')"
+          />
+        </transition-group>
+        <app-message class="my-18" v-if="!categoryActive">
+          De aquí en adelante, el pedido mínimo es 50
+        </app-message>
+        <transition-group name="list" tag="div">
+          <product-landing
+            v-for="category in categoriesResult.filter((c) =>
+              minOrderLimit.includes(c.name.toLowerCase())
+            )"
             :key="category.id"
             :category="category"
             :filtered="!!categoryActive"

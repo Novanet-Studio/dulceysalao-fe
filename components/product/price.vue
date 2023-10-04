@@ -3,8 +3,11 @@ defineProps<{ class?: string }>();
 </script>
 
 <template>
-  <p class="relative text-base text-color-2" :class="class">$
+  <p
+    class="relative text-base bg-color-2 inline-block px-2 py-2 text-color-[#282828]"
+    :class="class"
+  >
+    $
     <slot />
   </p>
 </template>
-

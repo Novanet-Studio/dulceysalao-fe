@@ -118,6 +118,7 @@ interface ProductAttributes {
   materials: string;
   price: number;
   category: CategoryAttributes;
+  gluten: boolean;
   size_stock?: SizeStock[];
 }
 

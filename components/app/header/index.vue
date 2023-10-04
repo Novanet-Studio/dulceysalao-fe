@@ -18,7 +18,7 @@
 
 <style scoped>
 .header__wrapper {
-  @apply px-6 py-10 bg-white border-b border-color-4 md:px-6;
+  @apply px-6 py-10 bg-color-1 border-b border-color-1 text-color-2 md:px-6;
 }
 
 .header__container {

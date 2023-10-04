@@ -5,13 +5,12 @@ const mainMenu = ref([
     url: '/',
   },
   {
-    text: 'Contáctanos',
-    url: '/contacto',
+    text: 'Nosotros',
+    url: '/nosotros',
   },
   {
-    text: 'Volver al sitio corporativo',
-    url: 'https://ccsmultisport.com/',
-    icon: 'i-ph-arrow-up-right',
+    text: 'Contáctanos',
+    url: '/contacto',
   },
 ]);
 </script>
@@ -22,7 +21,9 @@ const mainMenu = ref([
       v-for="item in mainMenu"
       :key="item.text"
       class="menu__item"
-      :class="$route.path === item?.url ? 'text-white font-bold' : 'text-white'"
+      :class="
+        $route.path === item?.url ? 'text-color-1 font-bold' : 'text-color-7'
+      "
     >
       <nuxt-link
         class="menu__link"

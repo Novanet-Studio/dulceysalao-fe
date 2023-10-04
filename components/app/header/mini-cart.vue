@@ -93,7 +93,7 @@ onClickOutside(miniCartRef, () => {
 }
 
 .mini-cart__empty {
-  @apply min-h-[50px] relative p-5 max-h-[300px] overflow-auto bg-white border border-white border-b-transparent;
+  @apply min-h-[50px] relative p-5 max-h-[300px] overflow-auto bg-white border border-white border-b-transparent text-color-1;
 }
 
 .mini-cart__wrapper {

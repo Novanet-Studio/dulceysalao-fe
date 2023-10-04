@@ -22,11 +22,16 @@ onMounted(async () => {
 <template>
   <div class="landing" v-if="products?.length">
     <div class="landing__wrapper">
-      <div class="landing__header">
+      <div class="landing__header relative">
         <h3 class="landing__title">
           {{ category.name }}
         </h3>
-        <button class="underline" @click="$emit('filter')" v-if="!filtered">
+        <img class="h-18" src="/patron-inline.svg" alt="Patron inline" />
+        <button
+          class="absolute right-8 bg-color-2 text-color-7 px-2 py-2"
+          @click="$emit('filter')"
+          v-if="!filtered"
+        >
           ver todos
         </button>
       </div>
@@ -73,7 +78,7 @@ onMounted(async () => {
 }
 
 .landing__header {
-  @apply flex flex-nowrap justify-between items-center px-5 py-4 bg-light-600;
+  @apply flex flex-nowrap justify-between items-center pl-5 bg-color-1;
 }
 
 .landing__title {
