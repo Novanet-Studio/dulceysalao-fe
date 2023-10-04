@@ -15,10 +15,10 @@ const {
   <div>
     <app-banner />
     <section class="contenedor">
-      <app-message
-        title="¿Quieres conocer nuestra colección?"
-        subtitle="Tenemos artículos para todos"
-      />
+      <app-message>
+        En Dulce y Salao, nos apasiona crear experiencias inolvidables a través
+        de nuestros productos criollos.
+      </app-message>
       <product-loader v-if="isLoading" />
       <div id="parent" v-if="!isLoading && categories.length">
         <div class="flex items-center justify-between mt-8">

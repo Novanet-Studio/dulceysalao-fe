@@ -54,7 +54,7 @@ export default defineConfig({
         sans: [
           {
             name: 'Outfit',
-            weights: ['400', '500', '600', '700', '800', '900'],
+            weights: ['200', '300', '400', '500', '600', '700', '800', '900'],
           },
           { name: 'sans-serif', provider: 'none' },
         ],
@@ -141,7 +141,7 @@ export default defineConfig({
     'b-subtitle':
       'text-sm text-color-2 mt-0 mb-6 font-bold md:mb-3 lg:text-base',
     'b-link-wrapper': 'flex justify-between items-center',
-    contenedor:"m-8 md:(container)"
+    contenedor: 'm-8 md:(container)',
   },
   preflights: [
     {
