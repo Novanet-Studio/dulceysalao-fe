@@ -1,0 +1,11 @@
+{
+  "store": {
+    "auth": "dys-auth",
+    "cart": "dys-cart",
+    "checkout": "dys-checkout",
+    "global": "dys-global",
+    "invoice": "dys-invoice",
+    "product": "dys-product",
+    "wishlist": "dys-wishlist"
+  }
+}

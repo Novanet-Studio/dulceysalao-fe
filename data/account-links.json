@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "text": "Recibos",
+      "name": "invoices",
+      "url": "/invoices"
+    },
+    {
+      "text": "Direcciones",
+      "name": "address",
+      "url": "/addresses"
+    },
+    {
+      "text": "Carrito",
+      "name": "shopping-cart",
+      "url": "/shopping-cart"
+    },
+    {
+      "text": "Lista de deseos",
+      "name": "wishlist",
+      "url": "/wishlist"
+    }
+  ]
+}
