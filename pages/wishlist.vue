@@ -1,7 +1,12 @@
 <script setup lang="ts">
+import strapiMapper from 'smapper';
+import { GetProductById } from '~/graphql/queries';
+
 definePageMeta({
   layout: 'account',
 });
+
+const graphql = useStrapiGraphQL();
 
 const wishlist = useWishlistStore();
 const productStore = useProductStore();
@@ -25,10 +30,6 @@ const columns = [
     label: 'Monto',
   },
   {
-    key: 'total',
-    label: 'Total',
-  },
-  {
     key: 'actions',
   },
 ];
@@ -42,14 +43,52 @@ const products = computed(
   () =>
     productStore.cartProducts?.map((product) => ({
       id: product!.id,
+      name: product?.name,
       product: {
         url: product!.images[0].url,
       },
       price: product!.price,
       amount: getQuantity(product!.id),
-      total: product!.price * Number(getQuantity(product!.id)),
     }))
 );
+
+async function handleAddToCart(product: Product) {
+  const item = {
+    id: product.id,
+    quantity: 1,
+    price: product.price,
+  };
+
+  cartStore.addProductToCart(item as CartItem);
+
+  const itemsList = cartStore.cartItems.map((item) =>
+    graphql<ProductRequest>(GetProductById, { id: item.id })
+  );
+
+  const itemsResult = await Promise.all(itemsList);
+
+  const temp: Product[] = [];
+
+  strapiMapper<any[]>(itemsResult).forEach((item) => {
+    temp.push(item.products[0]);
+  });
+
+  productStore.addCartProducts(temp);
+
+  useToast().add({
+    icon: 'i-ph-check',
+    title: '¡Listo!',
+    description: `"${product.name}" ha sido agregado al carrito`,
+    color: 'green',
+  });
+
+  handleRemoveItemFromWishlist(product);
+}
+
+function handleRemoveItemFromWishlist(row: any) {
+  wishlist.removeItem(row);
+  wishlist.load();
+}
 
 onMounted(() => {
   wishlist.load();
@@ -93,8 +132,14 @@ onMounted(() => {
           class="!bg-color-1 hover:!bg-color-1-700"
           icon="i-ph-shopping-cart"
           :ui="{ rounded: 'rounded-sm' }"
+          @click="handleAddToCart(row)"
         />
-        <UButton color="red" variant="ghost" icon="i-ph-x" />
+        <UButton
+          color="red"
+          variant="ghost"
+          icon="i-ph-x"
+          @click="handleRemoveItemFromWishlist(row)"
+        />
       </template>
       <template #loading-state>
         <div class="flex flex-col items-center justify-center mt-12">
