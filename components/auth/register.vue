@@ -136,7 +136,7 @@ watchEffect(() => {
           <h5 class="font-normal text-lg text-gray-600">Crea tu cuenta</h5>
         </header>
 
-        <UFormGroup class="mb-4" label="Usuario" name="user">
+        <UFormGroup class="mb-4" label="Usuario" name="username">
           <UInput icon="i-ph-user-duotone" size="lg" v-model="state.username" />
         </UFormGroup>
 
