@@ -44,13 +44,13 @@ export default defineAppConfig({
     sliders: [
       {
         image: '/img/home/dulce-y-salao-inicio-slider-1.jpg',
-        title: 'Mensaje de navidad',
+        // title: 'Mensaje de navidad',
         description:
           'Regala esta navidad la tradicional Torta de Navidad de Graciela Sahmkow o cualquiera de nuestros productos Dulce y Salao.',
       },
       {
         image: '/img/home/dulce-y-salao-inicio-slider-2.jpg',
-        title: 'My otro texto',
+        // title: 'My otro texto',
         description: 'Otro mensaje aca',
       },
     ],

@@ -2,12 +2,19 @@
 import { Navigation } from 'swiper/modules';
 import 'swiper/element/css/navigation';
 
+type Slider = {
+  image: string;
+  title: string;
+  description: string;
+};
+
 interface Props {
-  items: string[] | Product[];
+  items: string[] | Product[] | Slider[];
   slidesPerView?: number;
   spaceBetween?: number;
   centeredSlides?: boolean;
   breakpoints?: Record<number, Record<string, unknown>>;
+  orientation?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -18,14 +25,21 @@ const props = withDefaults(defineProps<Props>(), {
 
 const renderImages = ref(false);
 const images = ref<string[]>([]);
+const sliders = ref<Slider[]>([]);
 const products = ref<Product[]>();
 
 watchEffect(() => {
   const isString = typeof props!.items[0] === 'string';
+  const isSlider = (props?.items[0] as Slider)?.image;
 
   if (isString) {
     renderImages.value = true;
     images.value = props.items as string[];
+    return;
+  }
+
+  if (isSlider) {
+    sliders.value = props.items as Slider[];
     return;
   }
 
@@ -51,6 +65,28 @@ watchEffect(() => {
         </div>
       </swiper-slide>
     </template>
+
+    <template v-else-if="sliders.length">
+      <swiper-slide v-for="(slider, index) in sliders" :key="index">
+        <div class="slider__wrapper">
+          <h1 v-if="slider.title" :class="`slider__title ${orientation}`">
+            {{ slider.title }}
+          </h1>
+          <div
+            class="absolute w-[40%] h-full bg-gradient-to-r from-black/50 to-black/5 backdrop:blur-sm"
+          >
+            <p
+              v-if="slider.description"
+              :class="`slider__description ${orientation}`"
+            >
+              {{ slider.description }}
+            </p>
+          </div>
+          <img class="slider__image" :src="slider.image" alt="DulceySalao" />
+        </div>
+      </swiper-slide>
+    </template>
+
     <template v-else>
       <swiper-slide
         v-for="item in products"
@@ -64,6 +100,31 @@ watchEffect(() => {
 </template>
 
 <style scoped>
+.slider__wrapper {
+  @apply relative w-full;
+}
+.slider__image {
+  @apply w-full;
+}
+.slider__title {
+  @apply absolute top-6 text-xl text-color-3 font-semibold;
+  @apply md:text-4xl lg:text-5xl md:top-1/4;
+}
+.slider__description {
+  @apply absolute pl-20 bottom-1/4 pr-14 text-color-2 font-light;
+  @apply md:text-3xl md:bottom-1/4 lg:bottom-1/2 lg:leading-10;
+}
+.slider-left {
+  @apply left-12 md:left-16;
+}
+.slider-right {
+  @apply right-16;
+}
+
+.slider-center {
+  @apply w-full text-center;
+}
+
 .slider__image {
   @apply w-full;
 }
