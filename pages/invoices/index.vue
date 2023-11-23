@@ -11,14 +11,46 @@ sectionTitle.value = 'Órdenes de compra';
 const invoice = useInvoiceStore();
 const router = useRouter();
 
+// Pagination
+const page = ref(1);
+const pageCount = ref(5);
+const pageTotal = ref(10);
+const pageFrom = computed(() => (page.value - 1) * pageCount.value);
+const pageTo = computed(() =>
+  Math.min(page.value * pageCount.value, pageTotal.value)
+);
+
+interface FetchInvoicesReturn {
+  data: Invoice[] | undefined;
+  meta: Record<string, any> | null;
+}
+
+const { data: invoices, pending } = await useLazyAsyncData<FetchInvoicesReturn>(
+  'invoices',
+  () => {
+    const id = String(useAuthStore().user.id);
+    return invoice.fetchInvoices(id, {
+      page: page.value,
+      pageSize: pageCount.value,
+    });
+  },
+  {
+    default: () => ({
+      data: [],
+      meta: null,
+    }),
+    watch: [page, pageCount],
+  }
+);
+
 const userInvoices = computed(() => {
   return invoice.invoices.map((invoice) => ({
     ...invoice,
     id: invoice.id,
     bill: invoice.fullName,
     amount: invoice.amount,
-    date: new Date(invoice?.createdAt ?? '').toLocaleDateString('en-US'),
-    status: invoice.paid ? 'Paid' : 'Pending',
+    date: new Date(invoice?.createdAt ?? '').toLocaleDateString('es-VE'),
+    status: invoice.paid ? 'Pago' : 'Pendiente',
   }));
 });
 
@@ -53,6 +85,12 @@ function select(row: Invoice) {
 onMounted(async () => {
   await invoice.fetchInvoices(String(useAuthStore().user.id));
 });
+
+watchEffect(() => {
+  if (invoices.value.meta?.pagination?.total) {
+    pageTotal.value = invoices.value.meta.pagination.total;
+  }
+});
 </script>
 
 <template>
@@ -60,6 +98,7 @@ onMounted(async () => {
     <UTable
       :rows="userInvoices"
       :columns="columns"
+      :loading="pending"
       @select="select"
       :ui="{
         thead: '[&>tr]:!bg-color-3  [&>tr]:!text-white',
@@ -81,6 +120,39 @@ onMounted(async () => {
         </div>
       </template>
     </UTable>
+
+    <div
+      class="flex flex-wrap justify-between items-center mt-8"
+      v-if="pageTotal > 0"
+    >
+      <div>
+        <span class="text-sm leading-5">
+          Mostrando
+          <span class="font-medium">{{ pageFrom }}</span>
+          a
+          <span class="font-medium">{{ pageTo }}</span>
+          de
+          <span class="font-medium">{{ pageTotal }}</span>
+          resultados
+        </span>
+      </div>
+
+      <UPagination
+        v-model="page"
+        :page-count="pageCount"
+        :total="pageTotal"
+        :ui="{
+          wrapper: 'flex items-center gap-1',
+          rounded: '!rounded-none min-w-[32px] justify-center',
+          default: {
+            activeButton: {
+              variant: 'outline',
+              color: 'color-3',
+            },
+          },
+        }"
+      />
+    </div>
   </section>
 </template>
 
