@@ -1,3 +1,7 @@
+<script setup>
+useAppAuth();
+</script>
+
 <template>
   <div class="access">
     <div class="access__wrapper">

@@ -1,3 +1,7 @@
+<script setup>
+useAppAuth();
+</script>
+
 <template>
   <div class="default">
     <div class="default__wrapper">

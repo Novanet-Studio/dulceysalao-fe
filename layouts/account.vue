@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const sectionTitle = ref('');
 
+useAppAuth();
+
 provide('sectionTitle', sectionTitle);
 </script>
 
