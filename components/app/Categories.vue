@@ -12,7 +12,7 @@ defineProps<Props>();
 <template>
   <section class="mt-12">
     <div class="categories__header">
-      <h3 class="categories__title">Categories</h3>
+      <h3 class="categories__title">Categorias</h3>
       <Transition name="slide-fade">
         <button
           class="categories__btn"
