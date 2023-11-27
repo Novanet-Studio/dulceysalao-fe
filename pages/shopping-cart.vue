@@ -11,7 +11,6 @@ const graphql = useStrapiGraphQL();
 
 const cart = useCartStore();
 const product = useProductStore();
-// const discount = ref('');
 
 const handleIncreaseQuantity = (id: string) => {
   cart.cartItems = cart.cartItems.map((item) =>
@@ -79,26 +78,6 @@ const columns = [
     key: 'actions',
   },
 ];
-
-const getQuantity = (id: string) => () =>
-  cart.cartItems?.length
-    ? cart.cartItems?.find((item) => item.id === id)!.quantity
-    : 0;
-
-// const products = computed(
-//   () =>
-//     product.cartProducts?.map((product) => ({
-//       id: product!.id,
-//       product: {
-//         url: product!.images[0].url,
-//       },
-//       price: product!.price,
-//       amount: cart.cartItems.find((item) => item.id === product!.id)!.quantity,
-//       total:
-//         product!.price *
-//         cart.cartItems.find((item) => item.id === product!.id)!.quantity,
-//     }))
-// );
 
 const products = computed(
   () =>
