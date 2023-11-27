@@ -16,6 +16,28 @@ const sectionTitle = inject('sectionTitle') as Ref<string>;
 
 sectionTitle.value = 'Wishlist';
 
+const handleIncreaseQuantity = (id: string) => {
+  cartStore.cartItems = cartStore.cartItems.map((item) =>
+    item.id === id
+      ? {
+          ...item,
+          quantity: item.quantity + 1,
+        }
+      : item
+  );
+};
+
+const handleDescreaseQuantity = (id: string) => {
+  cartStore.cartItems = cartStore.cartItems.map((item) =>
+    item.id === id
+      ? {
+          ...item,
+          quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity,
+        }
+      : item
+  );
+};
+
 const columns = [
   {
     key: 'product',
@@ -42,13 +64,15 @@ const getQuantity = (id: string) => () =>
 const products = computed(
   () =>
     productStore.cartProducts?.map((product) => ({
+      ...product,
       id: product!.id,
       name: product?.name,
       product: {
         url: product!.images[0].url,
       },
       price: product!.price,
-      amount: getQuantity(product!.id),
+      amount: cartStore.cartItems.find((item) => item.id === product!.id)!
+        .quantity,
     }))
 );
 
@@ -122,9 +146,9 @@ onMounted(() => {
       </template>
       <template #amount-data="{ row }">
         <CustomQuantity
-          :v-model="row.amount"
-          @increase="cartStore.increaseCartItemQuantity(row.id)"
-          @descrease="cartStore.decreaseCartItemQuantity(row.id)"
+          v-model="row.amount"
+          @increase="handleIncreaseQuantity(row.id)"
+          @descrease="handleDescreaseQuantity(row.id)"
         />
       </template>
       <template #actions-data="{ row }">
