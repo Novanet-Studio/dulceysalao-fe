@@ -5,7 +5,7 @@ const quantity = defineModel({
 
 withDefaults(
   defineProps<{
-    disabled: boolean;
+    disabled?: boolean;
   }>(),
   {
     disabled: false,
