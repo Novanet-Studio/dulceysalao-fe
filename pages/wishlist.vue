@@ -58,18 +58,30 @@ const columns = [
 
 const products = computed(
   () =>
-    productStore.cartProducts?.map((product) => ({
-      ...product,
-      id: product!.id,
-      name: product?.name,
-      product: {
-        url: product!.images[0].url,
-      },
-      price: product!.price,
-      amount:
-        cartStore.cartItems.find((item) => item.id === product!.id)?.quantity ||
-        0,
-    }))
+    productStore.wishlistItems?.map((product) => {
+      const isSpecial = product!.id === '3';
+      const maxItems = isSpecial ? 5 : 10;
+      const cartItem = cartStore.cartItems.find(
+        (item) => item.id === product!.id
+      );
+      const quantity = cartItem?.quantity || 1;
+      const isInvalid =
+        product!.stock < 1 ||
+        quantity > product!.stock ||
+        (isSpecial && quantity > maxItems);
+
+      return {
+        ...product,
+        id: product!.id,
+        name: product?.name,
+        product: {
+          url: product!.images[0].url,
+        },
+        price: product!.price,
+        amount: quantity,
+        isInvalid,
+      };
+    })
 );
 
 async function handleAddToCart(product: Product) {
@@ -143,20 +155,20 @@ onMounted(() => {
 
           <div
             class="absolute inset-0 flex rounded-full items-center justify-center bg-black/50"
-            v-if="row.stock < 1 || row.amount > row.stock"
+            v-if="row.isInvalid"
           >
-            <UTooltip text="No hay inventario disponible">
+            <UTooltip
+              text="No hay inventario disponible o superas la cantidad permitida"
+            >
               <UIcon name="i-ph-warning" class="text-xl text-white" />
             </UTooltip>
           </div>
         </div>
       </template>
       <template #price-data="{ row }">
-        <span
-          class="text-red-500 font-semibold"
-          v-if="row.stock < 1 || row.amount > row.stock"
-          >{{ row.price }}</span
-        >
+        <span class="text-red-500 font-semibold" v-if="row.isInvalid">{{
+          row.price
+        }}</span>
         <span v-else>{{ row.price }}</span>
       </template>
       <template #amount-data="{ row }">
@@ -171,7 +183,7 @@ onMounted(() => {
           class="!bg-color-1 hover:!bg-color-1-700"
           icon="i-ph-shopping-cart"
           :ui="{ rounded: 'rounded-sm' }"
-          :disabled="row.stock < 1 || row.amount > row.stock"
+          :disabled="row.isInvalid"
           @click="handleAddToCart(row)"
         />
         <UButton

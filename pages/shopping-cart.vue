@@ -39,7 +39,7 @@ const loadCartProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
 
   if (!itemsId.length) {
-    product.cartProducts = null;
+    // product.cartProducts = null;
     return;
   }
 
@@ -89,21 +89,28 @@ const columns = [
 
 const products = computed(
   () =>
-    product.cartProducts?.map((product) => ({
-      ...product,
-      id: product!.id,
-      product: {
-        url: product!.images[0].url,
-      },
-      price: product!.price,
-      amount:
-        cart.cartItems.find((item) => item.id === product!.id)?.quantity ?? 0,
-      total:
-        product!.price *
-        Number(
-          cart.cartItems.find((item) => item.id === product!.id)?.quantity ?? 0
-        ),
-    }))
+    product.cartProducts?.map((product) => {
+      const isSpecial = product!.id === '3';
+      const maxItems = isSpecial ? 5 : 10;
+      const cartItem = cart.cartItems.find((item) => item.id === product!.id);
+      const quantity = cartItem?.quantity || 1;
+      const isInvalid =
+        product!.stock < 1 ||
+        quantity > product!.stock ||
+        (isSpecial && quantity > maxItems);
+
+      return {
+        ...product,
+        id: product!.id,
+        product: {
+          url: product!.images[0].url,
+        },
+        price: product!.price,
+        amount: quantity,
+        total: product!.price * Number(quantity),
+        isInvalid,
+      };
+    })
 );
 
 function handleRemoveProductFromCart(item: CartItem) {
