@@ -39,7 +39,8 @@ const submit = async (event: FormSubmitEvent<FormData>) => {
       useToast().add({
         icon: 'i-ph-x-circle-duotone',
         title: 'Error',
-        description: 'An error has occurred, please try again',
+        description:
+          'Hubo un error al iniciar sesión, por favor intente de nuevo',
         color: 'red',
       });
       return;
@@ -52,7 +53,8 @@ const submit = async (event: FormSubmitEvent<FormData>) => {
     useToast().add({
       icon: 'i-ph-x-circle-duotone',
       title: 'Error',
-      description: 'An error occurred while logging in, please try again',
+      description:
+        'Hubo un error al iniciar sesión, por favor intente de nuevo',
       color: 'red',
     });
   } finally {

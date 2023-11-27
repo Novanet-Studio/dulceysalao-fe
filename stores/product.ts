@@ -53,25 +53,22 @@ export const useProductStore = defineStore(
     }
 
     async function checkStock() {
-      const validProducts: Product[] = [];
-      const noStockProducts: Product[] = [];
+      const valid: Product[] = [];
+      const invalid: Product[] = [];
       const temp = await getProductsFromCart();
 
-      // Crea una function que verifique si hay stock de cada producto
+      // Create a function that checks if there is stock of each product
       temp.forEach((product) => {
         const item = cartStore.cartItems.find((item) => item.id === product.id);
-        const found = product.size_stock?.find(
-          (stock) => stock.talla === item?.size
-        );
 
-        if (found!.inventario > 0 && item!.quantity < found!.inventario) {
-          validProducts.push(product);
+        if (product.stock > 0 && item!.quantity < product.stock) {
+          valid.push(product);
         } else {
-          noStockProducts.push(product);
+          invalid.push(product);
         }
       });
 
-      return [validProducts, noStockProducts];
+      return [valid, invalid];
     }
 
     async function update() {
@@ -82,13 +79,7 @@ export const useProductStore = defineStore(
 
         return {
           ...product,
-          size_stock: product.size_stock?.map((productStock) => ({
-            ...productStock,
-            inventario:
-              item!.size === productStock.talla
-                ? productStock.inventario - item!.quantity
-                : productStock.inventario,
-          })) as SizeStock[],
+          stock: product.stock - item!.quantity,
         };
       });
 
@@ -96,7 +87,7 @@ export const useProductStore = defineStore(
         await graphql(UpdateProduct, {
           id: product.id,
           data: {
-            size_stock: product.size_stock,
+            stock: product.stock,
           },
         });
       });

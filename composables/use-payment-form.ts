@@ -75,6 +75,29 @@ export default function usePaymentForm({
         return;
       }
 
+      const [valid, invalid] = await productStore.checkStock();
+
+      if (invalid.length) {
+        invalid.forEach((product) => {
+          useToast().add({
+            icon: 'i-ph-warning',
+            title: 'Error',
+            description: `El producto ${product.name} está agotado o excede la cantidad disponible`,
+            color: 'red',
+          });
+        });
+
+        useToast().add({
+          icon: 'i-ph-info',
+          title: 'Ayuda',
+          description:
+            'Puedes ir al carrito y eliminar los productos que están agotados o reducir la cantidad hasta cumplir la cantidad disponible',
+          color: 'blue',
+        });
+
+        return;
+      }
+
       const paymentData: PaymentObject = {
         orderId: crypto.randomUUID(),
         name: data.name,
@@ -84,14 +107,17 @@ export default function usePaymentForm({
         paymentDate: data.date,
       };
 
-      const invoiceItems = cart.cartItems;
+      const invoiceItems: CartItem[] = cart.cartItems.filter((item) =>
+        validProducts.find((product) => product.id === item.id)
+      );
+
       await invoice.createInvoiceReport(paymentData, invoiceItems, method);
       await productStore.update();
 
       useToast().add({
         icon: 'i-ph-check',
         title: '¡Éxito!',
-        description: 'The order has been generated, it is pending approval',
+        description: 'La orden ha sido generada, está pendiente de aprobación',
         color: 'green',
       });
 
@@ -101,7 +127,7 @@ export default function usePaymentForm({
         useToast().add({
           icon: 'i-ph-warning',
           title: 'Error',
-          description: 'There was an error reporting your payment',
+          description: 'Hubo un error al reportar tu pago',
           color: 'red',
         });
       }
@@ -110,7 +136,7 @@ export default function usePaymentForm({
         useToast().add({
           icon: 'i-ph-warning',
           title: 'Error',
-          description: 'There was an error sending email',
+          description: 'Hubo un error al enviar el correo electrónico',
           color: 'red',
         });
       }

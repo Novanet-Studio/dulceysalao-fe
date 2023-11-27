@@ -1,14 +1,6 @@
 <script lang="ts" setup>
 const items = [
   {
-    slot: 'squareup',
-    label: 'Square Up',
-  },
-  {
-    slot: 'paypal',
-    label: 'Paypal',
-  },
-  {
     slot: 'pago-movil',
     label: 'Pago movil',
   },
@@ -42,12 +34,6 @@ const items = [
       },
     }"
   >
-    <template #squareup>
-      <LazyPaymentVisa />
-    </template>
-    <template #paypal>
-      <LazyPaymentPaypal />
-    </template>
     <template #pago-movil>
       <LazyPaymentPagoMovil />
     </template>

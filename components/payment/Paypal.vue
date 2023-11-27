@@ -24,8 +24,33 @@ const loadPaypal = async () => {
     if ($paypal.Buttons) {
       await $paypal
         .Buttons({
-          async onClick() {
-            const invoiceItems: CartItem[] = cart.cartItems;
+          async onClick(_data, actions) {
+            const [valid, invalid] = await productStore.checkStock();
+
+            if (invalid.length) {
+              invalid.forEach((product) => {
+                useToast().add({
+                  icon: 'i-ph-warning',
+                  title: 'Error',
+                  description: `El producto ${product.name} está agotado o excede la cantidad disponible`,
+                  color: 'red',
+                });
+              });
+
+              useToast().add({
+                icon: 'i-ph-info',
+                title: 'Ayuda',
+                description: `Puedes ir al carrito y eliminar los productos que están agotados o reducir la cantidad hasta cumplir la cantidad disponible`,
+                color: 'blue',
+              });
+
+              return actions.reject();
+            }
+
+            const invoiceItems: CartItem[] = cart.cartItems.filter((item) =>
+              valid.find((product) => product.id === item.id)
+            );
+
             tempCartItems.value = invoiceItems;
           },
           createOrder: (_, actions) =>
