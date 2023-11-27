@@ -60,7 +60,7 @@ provide(injectKeys.product, props.product);
         <div
           class="absolute bg-color-2 bottom-0 left-0 flex justify-center items-center"
         >
-          <span class="px-4 py-1 font-light" v-if="!product.gluten">
+          <span class="px-4 py-1 font-light" v-if="product.gluten_free">
             Sin gluten
           </span>
         </div>
