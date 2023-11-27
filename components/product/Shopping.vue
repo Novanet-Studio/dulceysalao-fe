@@ -15,7 +15,10 @@ const product = inject(injectKeys.productDetail) as Ref<Product>;
 
 const isQuantityGreaterThanTen = computed(() => {
   const existItem = cart.cartItems.find((item) => item.id === product.value.id);
-  return existItem?.id && quantity.value + existItem.quantity > 10;
+  const isSpecial = existItem?.id === '3';
+  const maxItems = isSpecial ? 5 : 10;
+
+  return existItem?.id && quantity.value + existItem.quantity > maxItems;
 });
 
 const isQuantityGreatherThanStock = computed(() => {
@@ -60,11 +63,14 @@ const handleAddItemToWishlist = () => {
     id: product.value.id,
   };
 
+  const isSpecial = item.id === '3';
+  const message = `No puedes agregar más de ${isSpecial ? 5 : 10} artículos`;
+
   if (isQuantityGreaterThanTen.value) {
     useToast().add({
       icon: 'i-ph-warning',
       title: '¡Advertencia!',
-      description: 'No puedes agregar más de 10 artículos',
+      description: message,
       color: 'orange',
     });
     return;
@@ -87,11 +93,14 @@ const handleAddToCart = (isBuyNow = false) => {
     price: product.value.price,
   };
 
+  const isSpecial = item.id === '3';
+  const message = `No puedes agregar más de ${isSpecial ? 5 : 10} artículos`;
+
   if (isQuantityGreaterThanTen.value) {
     useToast().add({
       icon: 'i-ph-warning',
       title: '¡Advertencia!',
-      description: 'No puedes agregar más de 10 artículos',
+      description: message,
       color: 'orange',
     });
     return;
