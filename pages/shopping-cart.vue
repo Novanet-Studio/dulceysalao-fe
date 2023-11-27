@@ -35,9 +35,13 @@ const handleDescreaseQuantity = (id: string) => {
 };
 
 const loadCartProducts = async () => {
+  const temp: any[] = [];
   const itemsId = cart.cartItems.map((item) => item.id);
 
-  if (!itemsId.length) return;
+  if (!itemsId.length) {
+    product.cartProducts = null;
+    return;
+  }
 
   if (!cart.cartItems.length) {
     product.cartProducts = null;
@@ -48,9 +52,13 @@ const loadCartProducts = async () => {
     graphql<ProductRequest>(GetProductById, { id })
   );
 
-  const [response] = await Promise.all(productPromises);
+  const response = await Promise.all(productPromises);
 
-  product.cartProducts = strapiMapper(response.data.products.data) as Product[];
+  response.forEach((product) => {
+    temp.push(product.data.products.data[0]);
+  });
+
+  product.cartProducts = strapiMapper(temp) as Product[];
 };
 
 const sectionTitle = inject('sectionTitle') as Ref<string>;

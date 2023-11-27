@@ -66,8 +66,9 @@ const products = computed(
         url: product!.images[0].url,
       },
       price: product!.price,
-      amount: cartStore.cartItems.find((item) => item.id === product!.id)!
-        .quantity,
+      amount:
+        cartStore.cartItems.find((item) => item.id === product!.id)?.quantity ||
+        0,
     }))
 );
 
