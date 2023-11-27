@@ -18,19 +18,6 @@ async function handleAddToCart() {
     size: '',
   };
 
-  // if (props.product.size_stock?.length) {
-  //   useToast().add({
-  //     icon: 'i-ph-warning-duotone',
-  //     title: 'Warning',
-  //     description: 'You must select a size',
-  //     color: 'orange',
-  //   });
-  //   setTimeout(() => {
-  //     router.push(`/product/${props.product.id}`);
-  //   }, 500);
-  //   return;
-  // }
-
   cart.addProductToCart(newProduct);
 
   const itemsList = cart.cartItems.map((item) => {
