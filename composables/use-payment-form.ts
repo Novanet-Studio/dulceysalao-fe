@@ -108,7 +108,7 @@ export default function usePaymentForm({
       };
 
       const invoiceItems: CartItem[] = cart.cartItems.filter((item) =>
-        validProducts.find((product) => product.id === item.id)
+        valid.find((product) => product.id === item.id)
       );
 
       await invoice.createInvoiceReport(paymentData, invoiceItems, method);

@@ -61,7 +61,7 @@ export const useProductStore = defineStore(
       temp.forEach((product) => {
         const item = cartStore.cartItems.find((item) => item.id === product.id);
 
-        if (product.stock > 0 && item!.quantity < product.stock) {
+        if (product.stock > 0 && item!.quantity <= product.stock) {
           valid.push(product);
         } else {
           invalid.push(product);
