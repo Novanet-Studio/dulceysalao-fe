@@ -4,10 +4,7 @@ mutation updateProduct($id: ID!, $data: ProductInput!) {
       id
       attributes {
         name
-        size_stock {
-          talla
-          inventario
-        }
+        stock
       }
     }
   }

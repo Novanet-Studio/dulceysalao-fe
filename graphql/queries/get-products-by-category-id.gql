@@ -6,7 +6,8 @@ query GetProductsByCategoryId($id: ID!) {
         name
         description
         price
-        gluten
+        stock
+        gluten_free
         images {
           data {
             attributes {
@@ -16,10 +17,6 @@ query GetProductsByCategoryId($id: ID!) {
               formats
             }
           }
-        }
-        size_stock {
-          talla
-          inventario
         }
         category {
           data {

@@ -118,8 +118,8 @@ interface ProductAttributes {
   materials: string;
   price: number;
   category: CategoryAttributes;
-  gluten: boolean;
-  size_stock?: SizeStock[];
+  gluten_free: boolean;
+  stock: number;
 }
 
 interface InvoiceAtributes {
@@ -218,12 +218,6 @@ interface InvoicePaymentInfo {
   amount: string;
   confirmation_id: string;
   payment_date: string;
-}
-
-interface SizeStock {
-  id: string;
-  talla: string;
-  inventario: number;
 }
 
 interface Image {
