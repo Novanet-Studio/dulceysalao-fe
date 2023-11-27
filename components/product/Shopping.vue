@@ -9,7 +9,6 @@ const cart = useCartStore();
 const productStore = useProductStore();
 const wishlist = useWishlistStore();
 const router = useRouter();
-const selectedSize = ref<SizeStock>();
 const quantity = ref<number>(1);
 
 const product = inject(injectKeys.productDetail) as Ref<Product>;
@@ -17,6 +16,10 @@ const product = inject(injectKeys.productDetail) as Ref<Product>;
 const isQuantityGreaterThanTen = computed(() => {
   const existItem = cart.cartItems.find((item) => item.id === product.value.id);
   return existItem?.id && quantity.value + existItem.quantity > 10;
+});
+
+const isQuantityGreatherThanStock = computed(() => {
+  return quantity.value > product.value.stock;
 });
 
 const handleIncreaseQuantity = () => quantity.value++;
@@ -82,7 +85,6 @@ const handleAddToCart = (isBuyNow = false) => {
     id: product.value.id,
     quantity: quantity.value,
     price: product.value.price,
-    size: selectedSize.value?.talla as string,
   };
 
   if (isQuantityGreaterThanTen.value) {
@@ -114,6 +116,7 @@ const handleAddToCart = (isBuyNow = false) => {
         :ui="{
           rounded: 'rounded-none',
         }"
+        :disabled="isQuantityGreatherThanStock"
         @click="handleAddToCart(true)"
       />
       <CustomQuantity
@@ -127,6 +130,7 @@ const handleAddToCart = (isBuyNow = false) => {
         class="ring-0 ring-transparent shadow-xl"
         size="lg"
         label="Agregar"
+        :disabled="isQuantityGreatherThanStock"
         :ui="{
           rounded: 'rounded-none',
         }"
@@ -141,8 +145,12 @@ const handleAddToCart = (isBuyNow = false) => {
         :ui="{
           rounded: 'rounded-none',
         }"
+        :disabled="isQuantityGreatherThanStock"
         @click="handleAddItemToWishlist"
       />
     </div>
+    <p class="mt-4 font-light text-red-500" v-if="isQuantityGreatherThanStock">
+      La cantidad es mayor al inventario disponible
+    </p>
   </div>
 </template>
