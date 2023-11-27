@@ -10,7 +10,9 @@ const product = inject(injectKeys.productDetail) as Ref<Product>;
         {{ product?.name }}
       </h4>
       <span>
-        <UBadge class="!bg-color-2 !text-[#282828]">Sin gluten</UBadge>
+        <UBadge class="!bg-color-2 !text-[#282828]" v-if="product.gluten_free"
+          >Sin gluten</UBadge
+        >
       </span>
     </div>
     <div class="text-color-8 font-medium lg:mb-1 lg:text-xl lg:mt-2">
