@@ -56,11 +56,6 @@ const columns = [
   },
 ];
 
-const getQuantity = (id: string) => () =>
-  cartStore.cartItems?.length
-    ? cartStore.cartItems?.find((item) => item.id === id)!.quantity
-    : 0;
-
 const products = computed(
   () =>
     productStore.cartProducts?.map((product) => ({

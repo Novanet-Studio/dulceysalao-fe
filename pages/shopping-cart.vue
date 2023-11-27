@@ -103,13 +103,19 @@ const getQuantity = (id: string) => () =>
 const products = computed(
   () =>
     product.cartProducts?.map((product) => ({
+      ...product,
       id: product!.id,
       product: {
         url: product!.images[0].url,
       },
       price: product!.price,
-      amount: getQuantity(product!.id),
-      total: product!.price * Number(getQuantity(product!.id)),
+      amount:
+        cart.cartItems.find((item) => item.id === product!.id)?.quantity ?? 0,
+      total:
+        product!.price *
+        Number(
+          cart.cartItems.find((item) => item.id === product!.id)?.quantity ?? 0
+        ),
     }))
 );
 
@@ -145,17 +151,44 @@ onMounted(() => {
       }"
     >
       <template #product-data="{ row }">
-        <img
-          class="w-12 h-12 object-cover rounded-full lg:w-20 lg:h-20"
-          :src="row.product.url"
-        />
+        <div class="relative w-12 h-12 rounded-full lg:w-20 lg:h-20">
+          <img
+            class="w-12 h-12 object-cover rounded-full lg:w-20 lg:h-20"
+            :src="row.product.url"
+          />
+
+          <div
+            class="absolute inset-0 flex rounded-full items-center justify-center bg-black/50"
+            v-if="row.stock < 1 || row.amount > row.stock"
+          >
+            <UTooltip text="No hay inventario disponible">
+              <UIcon name="i-ph-warning" class="text-xl text-white" />
+            </UTooltip>
+          </div>
+        </div>
+      </template>
+      <template #price-data="{ row }">
+        <span
+          class="text-red-500 font-semibold"
+          v-if="row.stock < 1 || row.amount > row.stock"
+          >{{ row.price }}</span
+        >
+        <span v-else>{{ row.price }}</span>
       </template>
       <template #amount-data="{ row }">
         <CustomQuantity
-          :v-model="row.amount"
+          v-model="row.amount"
           @increase="handleIncreaseQuantity(row.id)"
           @descrease="handleDescreaseQuantity(row.id)"
         />
+      </template>
+      <template #total-data="{ row }">
+        <span
+          class="text-red-500 font-semibold"
+          v-if="row.stock < 1 || row.amount > row.stock"
+          >{{ row.price }}</span
+        >
+        <span v-else>{{ row.price }}</span>
       </template>
       <template #actions-data="{ row }">
         <UButton
