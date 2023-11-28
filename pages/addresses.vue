@@ -18,7 +18,7 @@ sectionTitle.value = 'Direcciones';
       <div class="address__content">
         <figure>
           <figcaption class="address__figcaption">
-            Dirección de Envio
+            Dirección de facturación
           </figcaption>
           <div class="bubble" v-if="hasBilling">
             <p class="address__text">
