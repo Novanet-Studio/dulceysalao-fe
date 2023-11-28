@@ -47,13 +47,13 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
 
     useToast().add({
       icon: 'i-ph-check',
-      title: 'Your password has been reset',
-      description: 'Please log in',
+      title: 'Tu contraseña ha sido restablecida',
+      description: 'Por favor inicia sesión con tu nueva contraseña',
       color: 'green',
     });
 
     // remove email saved in session storage
-    sessionStorage.removeItem('bon_forgot');
+    sessionStorage.removeItem('dys_forgot');
 
     setTimeout(() => {
       router.push('/auth/login');
@@ -62,7 +62,7 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
     useToast().add({
       icon: 'i-ph-warning-duotone',
       title: 'Error',
-      description: 'There was a problem resetting your password',
+      description: 'Hubo un problema al restablecer tu contraseña',
       color: 'red',
     });
   } finally {

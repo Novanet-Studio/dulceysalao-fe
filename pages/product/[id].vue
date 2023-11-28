@@ -20,11 +20,10 @@ const load = async () => {
 
     product.value = strapiMapper(data.products.data[0]);
   } catch (error) {
-    console.log(error);
     useToast().add({
       icon: 'i-ph-warnin-duotone',
       title: 'Error',
-      description: 'An error occurred while loading the product',
+      description: 'Hubo un error al cargar el producto',
       color: 'red',
     });
   } finally {

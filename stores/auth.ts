@@ -39,7 +39,7 @@ export const useAuthStore = defineStore(
         useToast().add({
           icon: 'i-ph-warning',
           title: 'Oops!',
-          description: 'User or password invalid',
+          description: 'Email o contraseña incorrectos',
           color: 'red',
         });
         return false;
@@ -53,7 +53,7 @@ export const useAuthStore = defineStore(
       useToast().add({
         icon: 'i-ph-check',
         title: '¡Éxito!',
-        description: 'Log in is successful!',
+        description: '¡Inicio de sesión exitoso!',
       });
 
       return true;
@@ -66,7 +66,7 @@ export const useAuthStore = defineStore(
         useToast().add({
           icon: 'i-ph-warning',
           title: 'Oops!',
-          description: 'User or email already exists',
+          description: 'Correo electrónico ya registrado',
           color: 'red',
         });
         return false;
@@ -79,7 +79,7 @@ export const useAuthStore = defineStore(
       useToast().add({
         icon: 'i-ph-check',
         title: '¡Éxito!',
-        description: 'Registration is successful!',
+        description: 'El registro fue exitoso',
       });
 
       return true;
@@ -123,7 +123,7 @@ export const useAuthStore = defineStore(
 
       useToast().add({
         icon: 'i-ph-check',
-        title: 'Logout is successful!',
+        title: 'La sesión se cerró correctamente',
       });
     }
 

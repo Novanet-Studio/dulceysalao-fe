@@ -107,7 +107,7 @@ export const useCheckoutStore = defineStore(
       useToast().add({
         icon: 'i-ph-check',
         title: '¡Éxito!',
-        description: 'Direction created with success!',
+        description: 'La dirección se creó con éxito!',
       });
 
       router.push('/addresses');
@@ -118,7 +118,7 @@ export const useCheckoutStore = defineStore(
         useToast().add({
           icon: 'i-ph-warning',
           title: 'Oops!',
-          description: 'An error occurred while updating the address',
+          description: 'Hubo un error al actualizar la dirección',
           color: 'red',
         });
         return;
@@ -143,7 +143,7 @@ export const useCheckoutStore = defineStore(
         useToast().add({
           icon: 'i-ph-warning',
           title: 'Oops!',
-          description: 'An error occurred while updating the address',
+          description: 'Hubo un error al actualizar la dirección',
           color: 'red',
         });
         return;
@@ -152,7 +152,7 @@ export const useCheckoutStore = defineStore(
       useToast().add({
         icon: 'i-ph-check',
         title: '¡Éxito!',
-        description: 'Direction updated with success!',
+        description: 'La dirección se actualizó con éxito!',
       });
 
       router.push('/addresses');

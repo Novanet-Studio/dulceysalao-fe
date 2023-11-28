@@ -17,8 +17,9 @@ export default function useAppAuth() {
     if (!token.value && !authStore.token) {
       useToast().add({
         icon: 'i-ph-warning',
-        title: 'Session expired',
-        description: 'Your session has expired. Please login again',
+        title: 'Sesión expirada',
+        description:
+          'Tu sesión ha expirado. Por favor inicia sesión nuevamente',
         color: 'orange',
       });
       router.push('/auth/login');

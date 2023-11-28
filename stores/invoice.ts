@@ -400,8 +400,8 @@ export const useInvoiceStore = defineStore(
 
         useToast().add({
           icon: 'i-ph-check',
-          title: 'Purchase order generated',
-          description: 'Thanks for choosing us!',
+          title: 'Orden de compra generada',
+          description: 'Gracias por elegirnos!',
         });
 
         setTimeout(() => {
@@ -445,8 +445,8 @@ export const useInvoiceStore = defineStore(
 
         useToast().add({
           icon: 'i-ph-check',
-          title: 'Purchase order generated',
-          description: 'Thanks for choosing us!',
+          title: 'Orden de compra generada',
+          description: 'Gracias por elegirnos!',
         });
 
         setTimeout(() => {
@@ -491,8 +491,8 @@ export const useInvoiceStore = defineStore(
 
         useToast().add({
           icon: 'i-ph-check',
-          title: 'Purchase order generated',
-          description: 'Thanks for choosing us!',
+          title: 'Orden de compra generada',
+          description: 'Gracias por elegirnos!',
         });
 
         setTimeout(() => {

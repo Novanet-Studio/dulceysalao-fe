@@ -35,12 +35,12 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
       email: data.email,
     });
 
-    sessionStorage.setItem('bon_forgot', btoa(data.email));
+    sessionStorage.setItem('dys_forgot', btoa(data.email));
 
     useToast().add({
       icon: 'i-ph-check',
-      title: 'Link sent',
-      description: 'We send you an email to reset your password',
+      title: 'Enlace enviado',
+      description: 'Te enviamos un correo para restablecer tu contraseña',
       color: 'green',
     });
 
@@ -52,7 +52,7 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
     useToast().add({
       icon: 'i-ph-warning-duotone',
       title: 'Error',
-      description: 'An error occurred while sending email',
+      description: 'Ocurrió un error al enviar el correo',
       color: 'red',
     });
   } finally {

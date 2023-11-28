@@ -42,9 +42,9 @@ export default function useCategory(params?: Params): Result {
     } catch (error) {
       console.log(error);
       useToast().add({
-        icon: 'i-ph-x',
+        icon: 'i-ph-warning',
         title: 'Error',
-        description: 'An error occurred while loading categories',
+        description: 'Hubo un error al cargar las categorías',
       });
       categories.value = [];
     } finally {
