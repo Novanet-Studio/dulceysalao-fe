@@ -110,7 +110,7 @@ function handleRemoveProductFromCart(id: string) {
 }
 
 .mini-cart__body {
-  @apply relative max-h-[20em] overflow-x-hidden w-[18.75rem] max-w-xs bg-white border border-white border-b-transparent;
+  @apply relative max-h-[20em] overflow-x-hidden w-[18.75rem] max-w-xs bg-white border border-white border-b-transparent flex flex-col gap-2;
 }
 
 .mini-cart__footer {

@@ -16,29 +16,6 @@ const sectionTitle = inject('sectionTitle') as Ref<string>;
 
 sectionTitle.value = 'Wishlist';
 
-const handleIncreaseQuantity = (id: string) => {
-  cartStore.cartItems = cartStore.cartItems.map((item) =>
-    item.id === id
-      ? {
-          ...item,
-          quantity: item.quantity + 1,
-        }
-      : item
-  );
-};
-
-const handleDescreaseQuantity = (id: string) => {
-  console.log('id =>', id);
-  cartStore.cartItems = cartStore.cartItems.map((item) =>
-    item.id === id
-      ? {
-          ...item,
-          quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity,
-        }
-      : item
-  );
-};
-
 const columns = [
   {
     key: 'product',
