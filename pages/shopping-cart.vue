@@ -153,7 +153,7 @@ onMounted(() => {
 
           <div
             class="absolute inset-0 flex rounded-full items-center justify-center bg-black/50"
-            v-if="row.stock < 1 || row.amount > row.stock"
+            v-if="row.isInvalid"
           >
             <UTooltip text="No hay inventario disponible">
               <UIcon name="i-ph-warning" class="text-xl text-white" />
@@ -162,11 +162,9 @@ onMounted(() => {
         </div>
       </template>
       <template #price-data="{ row }">
-        <span
-          class="text-red-500 font-semibold"
-          v-if="row.stock < 1 || row.amount > row.stock"
-          >{{ row.price }}</span
-        >
+        <span class="text-red-500 font-semibold" v-if="row.isInvalid">{{
+          row.price
+        }}</span>
         <span v-else>{{ row.price }}</span>
       </template>
       <template #amount-data="{ row }">
@@ -177,11 +175,9 @@ onMounted(() => {
         />
       </template>
       <template #total-data="{ row }">
-        <span
-          class="text-red-500 font-semibold"
-          v-if="row.stock < 1 || row.amount > row.stock"
-          >{{ row.price }}</span
-        >
+        <span class="text-red-500 font-semibold" v-if="row.isInvalid">{{
+          row.price
+        }}</span>
         <span v-else>{{ row.price }}</span>
       </template>
       <template #actions-data="{ row }">
