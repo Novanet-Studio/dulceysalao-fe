@@ -28,6 +28,7 @@ const handleIncreaseQuantity = (id: string) => {
 };
 
 const handleDescreaseQuantity = (id: string) => {
+  console.log('id =>', id);
   cartStore.cartItems = cartStore.cartItems.map((item) =>
     item.id === id
       ? {
@@ -45,11 +46,7 @@ const columns = [
   },
   {
     key: 'price',
-    label: 'Precio',
-  },
-  {
-    key: 'amount',
-    label: 'Monto',
+    label: 'Precio por unidad',
   },
   {
     key: 'actions',
@@ -147,51 +144,51 @@ onMounted(() => {
       }"
     >
       <template #product-data="{ row }">
-        <div class="relative w-12 h-12 rounded-full lg:w-20 lg:h-20">
-          <img
-            class="w-12 h-12 object-cover rounded-full lg:w-20 lg:h-20"
-            :src="row.product.url"
-          />
-
-          <div
-            class="absolute inset-0 flex rounded-full items-center justify-center bg-black/50"
-            v-if="row.isInvalid"
-          >
-            <UTooltip
-              text="No hay inventario disponible o superas la cantidad permitida"
+        <div class="flex gap-4 items-center">
+          <div class="relative w-12 h-12 rounded-full lg:w-20 lg:h-20">
+            <img
+              class="w-12 h-12 object-cover rounded-full lg:w-20 lg:h-20"
+              :src="row.product.url"
+            />
+            <div
+              class="absolute inset-0 flex rounded-full items-center justify-center bg-black/50"
+              v-if="row.isInvalid"
             >
-              <UIcon name="i-ph-warning" class="text-xl text-white" />
-            </UTooltip>
+              <UTooltip
+                text="No hay inventario disponible o superas la cantidad permitida"
+              >
+                <UIcon name="i-ph-warning" class="text-xl text-white" />
+              </UTooltip>
+            </div>
           </div>
+          <NuxtLink :to="`/product/${row.id}`">
+            <h6 class="text-lg hover:underline">{{ row.name }}</h6>
+          </NuxtLink>
         </div>
       </template>
       <template #price-data="{ row }">
-        <span class="text-red-500 font-semibold" v-if="row.isInvalid">{{
+        <span class="text-red-500 font-semibold text-lg" v-if="row.isInvalid">{{
           row.price
         }}</span>
-        <span v-else>{{ row.price }}</span>
-      </template>
-      <template #amount-data="{ row }">
-        <CustomQuantity
-          v-model="row.amount"
-          @increase="handleIncreaseQuantity(row.id)"
-          @descrease="handleDescreaseQuantity(row.id)"
-        />
+        <span v-else class="text-lg">{{ row.price }}</span>
       </template>
       <template #actions-data="{ row }">
-        <UButton
-          class="!bg-color-1 hover:!bg-color-1-700"
-          icon="i-ph-shopping-cart"
-          :ui="{ rounded: 'rounded-sm' }"
-          :disabled="row.isInvalid"
-          @click="handleAddToCart(row)"
-        />
-        <UButton
-          color="red"
-          variant="ghost"
-          icon="i-ph-x"
-          @click="handleRemoveItemFromWishlist(row)"
-        />
+        <div class="flex gap-4">
+          <UButton
+            class="!bg-color-1 hover:!bg-color-1-700"
+            icon="i-ph-shopping-cart"
+            label="Agregar"
+            :ui="{ rounded: 'rounded-sm' }"
+            :disabled="row.isInvalid"
+            @click="handleAddToCart(row)"
+          />
+          <UButton
+            color="red"
+            variant="ghost"
+            icon="i-ph-x"
+            @click="handleRemoveItemFromWishlist(row)"
+          />
+        </div>
       </template>
       <template #loading-state>
         <div class="flex flex-col items-center justify-center mt-12">
