@@ -63,19 +63,6 @@ const handleAddItemToWishlist = () => {
     id: product.value.id,
   };
 
-  const isSpecial = item.id === '3';
-  const message = `No puedes agregar más de ${isSpecial ? 5 : 10} artículos`;
-
-  if (isQuantityGreaterThanTen.value) {
-    useToast().add({
-      icon: 'i-ph-warning',
-      title: '¡Advertencia!',
-      description: message,
-      color: 'orange',
-    });
-    return;
-  }
-
   wishlist.addItem(item);
 
   useToast().add({
