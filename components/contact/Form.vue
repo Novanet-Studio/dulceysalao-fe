@@ -81,12 +81,15 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
         <UTextarea autoresize v-model="state.message" />
       </UFormGroup>
 
-      <div class="mt-8 flex justify-center">
+      <div class="form__submit">
         <UButton
           type="submit"
           icon="i-ph-paper-plane-tilt"
           size="lg"
           class="!bg-color-1 hover:!bg-color-1-800"
+          mt-8
+          flex
+          justify-center
         >
           Send
         </UButton>
@@ -96,12 +99,8 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
 </template>
 
 <style scoped>
-.title {
-  @apply font-bold mb-4 text-color-2  text-left md:text-lg md:mb-8 lg:text-2xl;
-}
-
 .form {
-  @apply w-full px-14 p-16 mt-12 md:px-24 shadow-md;
+  @apply w-full px-4 mt-8 md:px-24 shadow-md;
 }
 
 .form__title {
@@ -126,5 +125,9 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
 
 .form__right {
   @apply flex-[0_0_100%] md:flex-[0_0_calc(50%-1rem)];
+}
+
+.form__submit {
+  @apply mt-8 mb-8 flex justify-center;
 }
 </style>

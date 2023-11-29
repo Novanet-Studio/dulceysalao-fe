@@ -16,25 +16,33 @@ const classes = computed<object>(() => {
 });
 
 const mode = computed<string>(() => {
-  return props.mode === 'normal' ? 'py-20' : 'py-16';
+  return props.mode === 'normal' ? 'left' : 'center';
 });
 </script>
 
 <template>
-  <div
-    class="mt-12 w-full text-white relative flex justify-between items-center shadow overflow-hidden"
-    :class="classes"
-  >
-    <h3
-      class="font-300 md:text-xl md:-mb-1 lg:mb-0 lg:text-3xl lg:pl-24 lg:max-w-5xl"
-      :class="mode"
-    >
+  <div :class="class">
+    <h3 :class="mode">
       <slot />
     </h3>
-    <img
-      class="lg:h-60 absolute top-0 right-0"
-      src="/patron.svg"
-      alt="Patron"
-    />
   </div>
 </template>
+
+<style scoped>
+.default__message {
+  @apply w-full mt-12 text-white shadow  bg-color-1;
+}
+.default__message--bg {
+  @apply bg-[url('/patron-test.svg')] bg-contain bg-no-repeat bg-right;
+}
+
+h3 {
+  @apply text-color-2 md:text-3xl lg:text-2xl;
+}
+.left {
+  @apply py-4 pl-4 pr-32 md:py-8 md:pl-8 md:pr-64 lg:pr-52;
+}
+.center {
+  @apply p-8;
+}
+</style>

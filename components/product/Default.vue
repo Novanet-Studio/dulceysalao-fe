@@ -75,7 +75,7 @@ provide(injectKeys.product, props.product);
       <h5 class="product__title">
         {{ product.name }}
       </h5>
-      <p class="text-gray-500">
+      <p class="product__description">
         {{ product.description }}
       </p>
       <div class="flex gap-2 items-center">
@@ -114,11 +114,15 @@ provide(injectKeys.product, props.product);
 }
 
 .product__info-actions {
-  @apply flex flex-col justify-center gap-4;
+  @apply flex flex-col justify-center gap-1;
 }
 
 .product__title {
   @apply text-xl text-color-8 font-medium;
+}
+
+.product__description {
+  @apply text-gray-500;
 }
 
 .product__price {

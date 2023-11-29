@@ -4,8 +4,8 @@ import 'swiper/element/css/navigation';
 
 type Slider = {
   image: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 };
 
 interface Props {
@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
 const renderImages = ref(false);
 const images = ref<string[]>([]);
 const sliders = ref<Slider[]>([]);
-const products = ref<Product[]>();
+const products = ref<Product[]>([]);
 
 watchEffect(() => {
   const isString = typeof props!.items[0] === 'string';
@@ -61,7 +61,7 @@ watchEffect(() => {
     <template v-if="renderImages">
       <swiper-slide v-for="(image, index) in images" :key="index">
         <div>
-          <img class="slider__image" :src="image" alt="Products of the brand" />
+          <img class="slider__image" :src="image" alt="Bondikini Swimwear" />
         </div>
       </swiper-slide>
     </template>
@@ -72,17 +72,17 @@ watchEffect(() => {
           <h1 v-if="slider.title" :class="`slider__title ${orientation}`">
             {{ slider.title }}
           </h1>
-          <div
-            class="absolute w-[40%] h-full bg-gradient-to-r from-black/50 to-black/5 backdrop:blur-sm"
+          <p
+            v-if="slider.description"
+            :class="`slider__description ${orientation}`"
           >
-            <p
-              v-if="slider.description"
-              :class="`slider__description ${orientation}`"
-            >
-              {{ slider.description }}
-            </p>
-          </div>
-          <img class="slider__image" :src="slider.image" alt="DulceySalao" />
+            {{ slider.description }}
+          </p>
+          <img
+            class="slider__image"
+            :src="slider.image"
+            alt="Bondikini Swimwear"
+          />
         </div>
       </swiper-slide>
     </template>
@@ -107,12 +107,12 @@ watchEffect(() => {
   @apply w-full;
 }
 .slider__title {
-  @apply absolute top-6 text-xl text-color-3 font-semibold;
-  @apply md:text-4xl lg:text-5xl md:top-1/4;
+  @apply absolute top-6 text-xl text-color-3 font-semibold
+  md:text-4xl lg:text-5xl md:top-1/4;
 }
 .slider__description {
-  @apply absolute pl-20 bottom-1/4 pr-14 text-color-2 font-light;
-  @apply md:text-3xl md:bottom-1/4 lg:bottom-1/2 lg:leading-10;
+  @apply absolute top-1/4 pr-14 text-color-2
+  md:text-3xl md:top-1/3 lg:top-1/3;
 }
 .slider-left {
   @apply left-12 md:left-16;
@@ -125,12 +125,8 @@ watchEffect(() => {
   @apply w-full text-center;
 }
 
-.slider__image {
-  @apply w-full;
-}
-
 :global(:root) {
-  --swiper-navigation-color: #161824;
+  --swiper-navigation-color: white;
 }
 
 :deep(.swiper-button-prev),
@@ -139,12 +135,7 @@ watchEffect(() => {
 }
 
 :root {
-  --swiper-navigation-color: #161824;
-  --swiper-pagination-color: #161824;
-}
-
-swiper-container::part(button-prev),
-swiper-container::part(button-next) {
-  --swiper-navigation-size: 1.5rem;
+  --swiper-navigation-color: white;
+  --swiper-pagination-color: white;
 }
 </style>

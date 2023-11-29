@@ -81,7 +81,7 @@
   }
 
   .default__back {
-    @apply py-4 bg-[#E7E7E7] px-16 text-xs text-[#5A5A5A] font-bold flex justify-center md:text-sm lg:justify-start lg:py-8;
+    @apply flex justify-center bg-[#E7E7E7] text-xs text-[#5A5A5A] font-bold px-4 py-4 md:text-sm lg:py-8;
   }
 
   .default__back button {

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const appConfig = useAppConfig();
 const {
   isLoading,
   categories,
@@ -12,11 +13,15 @@ const {
 </script>
 
 <template>
-  <AppBanner />
+  <LazyAppSlider :items="appConfig.home.sliders" orientation="slider-left" />
   <div class="default__content">
-    <AppMessage class="default__message">
-      Discover our diverse collection of bikinis, one pieces, and swimwear sets
-      that come with matching cover ups.
+    <AppMessage
+      class="default__message default__message--bg"
+      variant="primary"
+      mode="normal"
+    >
+      En Dulce y Salao, nos apasiona crear experiencias inolvidables
+      especialmente para ti
     </AppMessage>
     <product-loader v-if="isLoading" />
     <div id="parent" v-else>

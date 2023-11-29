@@ -22,115 +22,58 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="landing" v-if="products?.length">
-    <div class="landing__wrapper">
-      <div class="landing__header">
-        <h3 class="landing__title">
+  <div class="category" v-if="products?.length">
+    <div class="category__wrapper">
+      <div class="category__header">
+        <h3 class="category__title">
           {{ category.name }}
         </h3>
         <UButton
-          class="!text-color-1 hover:!text-color-1-800"
+          class="!text-color-6 !text-lg hover:!text-color-1-800"
           variant="link"
           @click="$emit('filter')"
           v-if="!filtered"
           label="Ver todos"
         />
       </div>
-      <div class="landing__content">
-        <div
-          class="flex gap-2 items-center max-w-full"
-          :class="[
-            products?.length > 5
-              ? 'lg:max-w-[calc(100%-6rem)]'
-              : 'lg:max-w-full',
-          ]"
-          v-if="products.length && !filtered"
-        >
-          <UButton
-            icon="i-ph-caret-left"
-            class="disable:opacity-60 hidden w-12 h-12 lg:block"
-            size="xl"
-            :class="`prev-${category.id}`"
-            color="color-5"
-            variant="link"
-          />
+      <div class="category__content">
+        <div v-if="products.length && !filtered">
           <swiper-container
             :modules="[Autoplay, Navigation, Pagination]"
-            class="w-full h-full lg:w-[calc(100%-6rem)]"
             :space-between="10"
             :slides-per-view="2"
-            :pagination="true"
-            :navigation="{
-              prevEl: `.prev-${category.id}`,
-              nextEl: `.next-${category.id}`,
-            }"
+            navigation="true"
             :breakpoints="{
               '375': {
                 slidesPerView: 2,
-                spaceBetween: 20,
+                spaceBetween: 10,
               },
               '480': {
                 slidesPerView: 2,
-                spaceBetween: 20,
+                spaceBetween: 10,
               },
               '640': {
                 slidesPerView: 2,
-                spaceBetween: 20,
+                spaceBetween: 10,
               },
               '768': {
-                slidesPerView: 4,
-                spaceBetween: 40,
+                slidesPerView: 3,
+                spaceBetween: 20,
               },
               '1024': {
                 slidesPerView: 4,
-                spaceBetween: 40,
+                spaceBetween: 20,
                 pagination: false,
               },
             }"
           >
-            <swiper-slide
-              v-for="product in products"
-              :key="product.id"
-              class="py-10"
-            >
+            <swiper-slide v-for="product in products" :key="product.id">
               <ProductDefault :product="product" />
             </swiper-slide>
           </swiper-container>
-          <!-- <AppSlider
-            :items="products"
-            :slides-per-view="2"
-            :space-between="4"
-            :breakpoints="{
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 1,
-              },
-              1024: {
-                slidesPerView: 5,
-                spaceBetween: 4,
-              },
-            }"
-          >
-            <template #default="{ product }">
-              <div class="py-4">
-                <ProductDefault :product="product" />
-              </div>
-            </template>
-          </AppSlider> -->
-          <UButton
-            icon="i-ph-caret-right"
-            color="color-5"
-            variant="link"
-            size="xl"
-            class="disable:opacity-60 hidden w-12 h-12 lg:block"
-            :class="`prev-${category.id}`"
-          />
         </div>
 
-        <div
-          class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5"
-          v-if="filtered"
-        >
+        <div class="category__filtered" v-if="filtered">
           <ProductDefault
             v-for="product in products"
             :product="product"
@@ -143,27 +86,48 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.landing {
+.category {
   @apply mt-6;
 }
-
-.landing__header {
-  @apply flex flex-nowrap justify-between items-center pr-5 py-4 border-b-2 border-b-color-2 mx-6;
+.category__header {
+  @apply flex flex-nowrap justify-between items-center py-4 border-b-2 border-b-color-1;
 }
-
-.landing__title {
-  @apply mb-0 text-xl inline-block lg:text-4xl font-normal text-color-1;
+.category__title {
+  @apply mb-0 text-xl inline-block lg:text-3xl font-extrabold text-color-1;
 }
-
-.landing__content {
+.category__content {
   @apply relative pt-6;
 }
-
-.landing__slide {
-  @apply !w-[167px] mr-2 md:!w-[180px] md:mr-[10px] lg:!w-[260px] lg:mr-0;
+.category__button {
+  @apply block top-[50%] absolute;
+}
+.category__button--right {
+  @apply right-0;
+}
+.category__button--left {
+  @apply left-0;
+}
+.category__filtered {
+  @apply grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4;
 }
 
 swiper-container::part(bullet-active) {
-  --swiper-pagination-color: #7f2346;
+  --swiper-pagination-color: rgba(0, 0, 0, 0.7);
+  --swiper-pagination-color: #ddabac;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  --swiper-navigation-size: 1.8rem;
+  padding: 0.5em;
+  border-radius: 50%;
+  width: 1.4em;
+  height: 1.4em;
+  color: white;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  background-color: black;
 }
 </style>

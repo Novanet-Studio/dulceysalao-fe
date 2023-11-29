@@ -100,53 +100,57 @@ const handleAddToCart = (isBuyNow = false) => {
 </script>
 
 <template>
-  <div class="mt-4">
-    <span class="text-2xl md:text-3xl lg:text-4xl">
-      ${{ product?.price }}
-    </span>
-    <div class="flex gap-2 items-center mt-8 md:gap-4">
-      <UButton
-        label="Comprar"
-        class="px-8 !bg-color-1 hover:!bg-color-1-700"
-        size="lg"
-        :ui="{
-          rounded: 'rounded-none',
-        }"
-        :disabled="isQuantityGreatherThanStock"
-        @click="handleAddToCart(true)"
-      />
-      <CustomQuantity
-        v-model="quantity"
-        @descrease="handleDescreaseQuantity"
-        @increase="handleIncreaseQuantity"
-      />
-      <UButton
-        icon="i-ph-bag"
-        color="color-4"
-        class="ring-0 ring-transparent shadow-xl"
-        size="lg"
-        label="Agregar"
-        :disabled="isQuantityGreatherThanStock"
-        :ui="{
-          rounded: 'rounded-none',
-        }"
-        @click="handleAddToCart(false)"
-      />
+  <div class="product__actions">
+    <UButton
+      label="Comprar"
+      class="px-8 !bg-color-1 hover:!bg-color-1-700"
+      size="lg"
+      :ui="{
+        rounded: 'rounded-none',
+      }"
+      :disabled="isQuantityGreatherThanStock"
+      @click="handleAddToCart(true)"
+    />
+    <CustomQuantity
+      v-model="quantity"
+      @descrease="handleDescreaseQuantity"
+      @increase="handleIncreaseQuantity"
+    />
+    <UButton
+      icon="i-ph-bag"
+      color="color-4"
+      class="ring-0 ring-transparent shadow-xl"
+      size="lg"
+      label="Agregar"
+      :disabled="isQuantityGreatherThanStock"
+      :ui="{
+        rounded: 'rounded-none',
+      }"
+      @click="handleAddToCart(false)"
+    />
 
-      <UButton
-        icon="i-ph-heart"
-        color="color-4"
-        class="ring-0 ring-transparent shadow-xl"
-        size="lg"
-        :ui="{
-          rounded: 'rounded-none',
-        }"
-        :disabled="isQuantityGreatherThanStock"
-        @click="handleAddItemToWishlist"
-      />
-    </div>
-    <p class="mt-4 font-light text-red-500" v-if="isQuantityGreatherThanStock">
+    <UButton
+      icon="i-ph-heart"
+      color="color-4"
+      class="ring-0 ring-transparent shadow-xl"
+      size="lg"
+      :ui="{
+        rounded: 'rounded-none',
+      }"
+      :disabled="isQuantityGreatherThanStock"
+      @click="handleAddItemToWishlist"
+    />
+    <p class="product__actions-warning" v-if="isQuantityGreatherThanStock">
       La cantidad es mayor al inventario disponible
     </p>
   </div>
 </template>
+
+<style scoped>
+.product__actions {
+  @apply flex gap-1.5 items-center mt-4 md:gap-4;
+}
+.product__actions-warning {
+  @apply mt-4 font-light text-red-500;
+}
+</style>

@@ -14,7 +14,7 @@ export function receiptTemplateConfig() {
       },
       header: {
         icon: {
-          url: 'https://raw.githubusercontent.com/Novanet-Studio/dulceysalao-fe/main/static/logo.png',
+          url: 'https://raw.githubusercontent.com/Novanet-Studio/dulceysalao-fe/main/static/dulce-y-salao-logo.png',
           alt: 'Dulceysalao',
         },
         contact: {
@@ -68,7 +68,7 @@ export function merchantTemplateConfig() {
       },
       header: {
         icon: {
-          url: 'https://raw.githubusercontent.com/Novanet-Studio/dulceysalao-fe/main/static/logo.png',
+          url: 'https://raw.githubusercontent.com/Novanet-Studio/dulceysalao-fe/main/static/dulce-y-salao-logo.png',
           alt: 'Dulceysalao',
         },
       },
