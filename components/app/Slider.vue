@@ -112,7 +112,7 @@ watchEffect(() => {
 }
 .slider__description {
   @apply absolute top-1/4 pr-14 text-color-2
-  md:text-3xl md:top-1/3 lg:top-1/3;
+  md:text-3xl md:top-1/3 lg:text-4xl;
 }
 .slider-left {
   @apply left-12 md:left-16;
