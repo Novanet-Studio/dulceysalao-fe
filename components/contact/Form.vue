@@ -100,7 +100,7 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
 
 <style scoped>
 .form {
-  @apply w-full px-4 mt-8 md:px-24 shadow-md;
+  @apply w-full px-4 mt-10 md:px-24 shadow-md;
 }
 
 .form__title {
@@ -128,6 +128,6 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
 }
 
 .form__submit {
-  @apply mt-8 mb-8 flex justify-center;
+  @apply mt-8 pb-8 flex justify-center;
 }
 </style>

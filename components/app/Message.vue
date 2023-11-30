@@ -43,6 +43,6 @@ h3 {
   @apply py-4 pl-4 pr-32 md:py-8 md:pl-8 md:pr-64 lg:pr-52;
 }
 .center {
-  @apply p-8;
+  @apply p-8 text-center;
 }
 </style>

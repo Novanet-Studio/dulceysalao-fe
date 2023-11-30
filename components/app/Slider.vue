@@ -57,11 +57,17 @@ watchEffect(() => {
     loop
     :navigation="true"
     :modules="[Navigation]"
+    autoplay
+    freemode
   >
     <template v-if="renderImages">
       <swiper-slide v-for="(image, index) in images" :key="index">
         <div>
-          <img class="slider__image" :src="image" alt="Bondikini Swimwear" />
+          <img
+            class="slider__image"
+            :src="image"
+            alt="Prodcutos de Dulce y Salao"
+          />
         </div>
       </swiper-slide>
     </template>

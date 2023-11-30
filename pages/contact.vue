@@ -26,6 +26,6 @@
   @apply text-2xl pb-2 mt-8;
 }
 .contact__touch {
-  @apply grid gap-12 grid-cols-1 lg:grid-cols-[1fr_30%] lg:gap-24;
+  @apply m-auto w-[50em];
 }
 </style>

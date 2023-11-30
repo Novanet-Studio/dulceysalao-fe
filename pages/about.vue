@@ -17,7 +17,7 @@ definePageMeta({
     <AppMessage class="default__message">Nuestra historia</AppMessage>
     <div class="about__member">
       <div class="about__image-wrapper">
-        <nuxt-img
+        <img
           class="about__image"
           :src="appConfig.nosotros.historia.fundadora.image"
           alt="Graciela fundadora"
@@ -32,7 +32,7 @@ definePageMeta({
 
     <div class="about__member">
       <div class="about__image-wrapper">
-        <nuxt-img
+        <img
           class="about__image"
           :src="appConfig.nosotros.historia.directora.image"
           alt="Graciela fundadora"
@@ -64,7 +64,7 @@ definePageMeta({
   @apply flex flex-col gap-6 mt-8 md:flex-row;
 }
 .about__image-wrapper {
-  @apply w-full md:w-1/3;
+  @apply w-full md:w-1/4;
 }
 .about__image {
   @apply w-full self-start;
@@ -74,7 +74,7 @@ definePageMeta({
   lg:text-2xl lg:leading-10;
 }
 .about__paragraph--member {
-  @apply flex flex-col gap-4 md:w-2/3;
+  @apply flex flex-col gap-4 md:w-3/4;
 }
 .about__paragraph--full {
   @apply mt-8;

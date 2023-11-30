@@ -13,7 +13,7 @@ const {
 </script>
 
 <template>
-  <LazyAppSlider :items="appConfig.home.sliders" orientation="slider-left" />
+  <LazyAppSlider :items="appConfig.home.slider" orientation="slider-left" />
   <div class="default__content">
     <AppMessage
       class="default__message default__message--bg"
