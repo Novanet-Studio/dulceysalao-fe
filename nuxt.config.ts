@@ -68,7 +68,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'Dulce y Salao aplicacion web',
       short_name: 'Dulce y Salao',
-      description: 'Tienda online para vender productos online.',
+      description: 'Tienda online de Dulce y Salao.',
       start_url: '/',
       display: 'standalone',
       background_color: '#ffffff',
