@@ -1,5 +1,5 @@
 query GetProductsByCategoryId($id: ID!) {
-  products(filters: { category: { id: { eq: $id } } }) {
+  products(filters: { categories: { id: { eq: $id } } }) {
     data {
       id
       attributes {
@@ -18,7 +18,7 @@ query GetProductsByCategoryId($id: ID!) {
             }
           }
         }
-        category {
+        categories {
           data {
             id
             attributes {
