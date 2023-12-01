@@ -12,18 +12,30 @@ const icons: { [key: string]: string } = {
 </script>
 
 <template>
-  <div class="hidden mt-12 flex-col gap-3 md:flex">
-    <div
-      class="flex items-center gap-4"
-      v-for="(item, index) in widgets"
-      :key="index"
-    >
-      <span
-        class="w-[3.68rem] h-[3.68rem] bg-color-4 p-3 flex items-center justify-center shadow-md"
-      >
-        <UIcon :name="icons[item.icon]" class="text-4xl text-color-2" />
+  <div class="info">
+    <div class="info__icons" v-for="(item, index) in widgets" :key="index">
+      <span class="icon__container">
+        <UIcon :name="icons[item.icon]" class="icon__uicon" />
       </span>
-      <p class="text-xl text-gray-600">{{ item.text }}</p>
+      <p class="icon__text">{{ item.text }}</p>
     </div>
   </div>
 </template>
+
+<style scoped>
+.info {
+  @apply hidden mt-12 flex-col gap-3 md:flex;
+}
+.info__icons {
+  @apply flex items-center gap-4;
+}
+.icon__container {
+  @apply w-[3.68rem] h-[3.68rem] bg-color-1 p-3 flex items-center justify-center shadow-md;
+}
+.icon__uicon {
+  @apply text-4xl text-color-2;
+}
+.icon__text {
+  @apply text-xl text-gray-600;
+}
+</style>

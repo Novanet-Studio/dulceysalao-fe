@@ -14,20 +14,20 @@ export default defineAppConfig({
       site: 'dulceysalao.com',
     },
     widgets: [
-      /* {
-        link: 'https://wa.me/message/XTA7RUDHZKT4C1',
-        icon: 'whatsapp',
-        text: '+58 424-154-8330',
-      },
       {
+        link: 'https://wa.me/message/DVQ5K5HVMJLNF1',
+        icon: 'whatsapp',
+        text: '+58 424-101-3553',
+      },
+      /* {
         link: 'https://www.facebook.com/bondikini',
         icon: 'phone',
         text: '+1 754-2528080',
       }, */
       {
-        link: 'mailto:contact@dulceysalao.com',
+        link: 'mailto:dulceysalao@hotmail.com',
         icon: 'email',
-        text: 'contact@dulceysalao.com',
+        text: 'dulceysalao@hotmail.com',
       },
       {
         link: 'https://instagram.com/dulceysalao',

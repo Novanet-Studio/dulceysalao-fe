@@ -12,6 +12,7 @@
 
     <div class="contact__touch">
       <ContactForm />
+      <ContactInfo />
     </div>
   </div>
 </template>
@@ -19,13 +20,16 @@
 <style scoped>
 .contact {
   @apply mt-14
-  xs:max-md:mx-2 md:max-lg:mx-4
+  xs:max-md:mx-2 
+  md:max-lg:mx-4
   lg:container;
 }
 .contact__header {
   @apply text-2xl pb-2 mt-8;
 }
 .contact__touch {
-  @apply m-auto w-[50em];
+  @apply grid gap-12 grid-cols-1 
+  lg:grid-cols-[1fr_30%] 
+  lg:gap-24;
 }
 </style>
