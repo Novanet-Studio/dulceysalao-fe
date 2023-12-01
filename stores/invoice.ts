@@ -374,20 +374,20 @@ export const useInvoiceStore = defineStore(
       try {
         const emailProducts = getEmailProducts(products);
         const createdDate = new Date(payment.paymentDate).toLocaleDateString();
-        const realAmount = payment?.amountRate ? cart.amount : payment.amount;
-        const amountPayed = `$${realAmount} USD`;
+        // const realAmount = payment?.amountRate ? cart.amount : payment.amount;
+        // const amountPayed = `${cart.amount} USD`;
         const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
 
         const merchant = getMerchantObject({
           orderId,
-          payed: amountPayed,
+          payed: cart.amount,
           date: createdDate,
           tableData: emailProducts,
         });
 
         const receipt = getReceiptObject({
           orderId,
-          payed: amountPayed,
+          payed: cart.amount,
           date: createdDate,
           tableData: emailProducts,
         });
