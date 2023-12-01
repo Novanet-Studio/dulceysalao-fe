@@ -84,7 +84,7 @@ export const useInvoiceStore = defineStore(
         if (!invoice.value?.products.length) return [];
 
         const itemsId = invoice.value.products.map(
-          (product: Product) => product.id
+          (item: any) => item.product.id
         );
 
         const productPromises = itemsId.map((id: string) =>
@@ -94,8 +94,8 @@ export const useInvoiceStore = defineStore(
         const response = await Promise.all(productPromises);
         const result = strapiMapper<any[]>(response);
 
-        result.forEach((product) => {
-          temp.push(product.products[0]);
+        result.forEach(({ products: [found] }) => {
+          temp.push(found);
         });
 
         products.value = temp;
@@ -297,7 +297,6 @@ export const useInvoiceStore = defineStore(
 
         return result;
       } catch (error) {
-        console.log({ error });
         throw new PaymentReportError('An error occurred while sending report');
       }
     }
