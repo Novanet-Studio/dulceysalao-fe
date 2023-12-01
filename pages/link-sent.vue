@@ -19,7 +19,7 @@ const formattedEmail = computed(() => {
 });
 
 onMounted(() => {
-  const value = sessionStorage.getItem('cms.forgot');
+  const value = sessionStorage.getItem('dys_forgot');
 
   if (!value) return router.push('/forgot-password');
 
@@ -38,7 +38,7 @@ onMounted(() => {
 
     <div class="flex justify-center mt-8">
       <button
-        class="font-extrabold text-color-2"
+        class="font-extrabold text-color-1"
         @click="$router.push('/forgot-password')"
       >
         OK

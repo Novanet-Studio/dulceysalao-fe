@@ -29,7 +29,7 @@ const formRef = ref();
 const schema = object({
   password: string([
     minLength(1, 'Campo es requerido'),
-    regex(PASSWORD_REGEX, 'Password not meet requirements'),
+    regex(PASSWORD_REGEX, 'La contraseña no cumple con los requisitos'),
   ]),
   passwordConfirmation: string([minLength(1, 'Campo es requerido')]),
 });
@@ -80,7 +80,7 @@ watchEffect(() => {
   ) {
     formRef.value.setErrors(
       formRef.value.getErrors().concat({
-        message: 'Passwords do not match',
+        message: 'Las contraseñas no coinciden',
         path: 'passwordConfirmation',
       })
     );
@@ -97,17 +97,18 @@ onMounted(() => {
 <template>
   <UContainer>
     <UCard
-      class="max-w-md mx-auto bg-color-4 shadow-xl border-none ring-0 ring-transparent px-4"
+      class="max-w-md mx-auto shadow-xl border-none ring-0 ring-transparent px-4"
     >
       <UForm ref="form" :schema="schema" :state="state" @submit="submit">
         <header class="flex flex-col justify-center mb-4">
-          <h5 class="font-bold text-lg mb-2">Reset your password</h5>
+          <h5 class="font-bold text-lg mb-2">Restablecer su contraseña</h5>
           <span class="text-xs text-balance text-black/50">
-            Reset your password so you can log into your account again.
+            Restablece tu contraseña para que puedas iniciar sesión en tu cuenta
+            nuevamente
           </span>
         </header>
 
-        <UFormGroup class="mb-4" label="Password" name="password">
+        <UFormGroup class="mb-4" label="Contraseña" name="password">
           <UInput
             icon="i-ph-lock-duotone"
             :type="showPasswords ? 'text' : 'password'"
@@ -123,9 +124,9 @@ onMounted(() => {
               />
               <template #panel>
                 <span class="max-w-xs p-2">
-                  Password must be equal or greater than 8 characters, contain
-                  at least one uppercase letter, one lowercase letter, one
-                  number and one special character
+                  La contraseña debe ser igual o mayor a 8 caracteres, contener
+                  al menos una letra mayúscula, una letra minúscula, una número
+                  y un carácter especial
                 </span>
               </template>
             </UPopover>
@@ -134,7 +135,7 @@ onMounted(() => {
 
         <UFormGroup
           class="mb-4"
-          label="Confirm password"
+          label="Confirmar Contraseña"
           name="passwordConfirmation"
         >
           <UInput
@@ -149,9 +150,10 @@ onMounted(() => {
           <UButton
             type="submit"
             size="lg"
-            color="color-3"
+            class="!bg-color-1 hover:!bg-color-1-700"
+            :ui="{ rounded: 'rounded-sm' }"
             :disabled="isDisabled || isLoading"
-            >Enviar
+            >Resetear
             <template #leading>
               <AppLoader v-if="isLoading" />
             </template>

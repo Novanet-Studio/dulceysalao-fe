@@ -64,14 +64,14 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
 <template>
   <UContainer>
     <UCard
-      class="max-w-md mx-auto bg-color-4 shadow-xl border-none ring-0 ring-transparent px-4"
+      class="max-w-md mx-auto bg-white shadow-xl border-none ring-0 ring-transparent px-4"
     >
       <UForm :schema="formSchema" :state="state" @submit="submit">
         <header class="flex flex-col justify-center mb-4">
-          <h5 class="font-bold text-lg mb-2">Did you forget your password?</h5>
+          <h5 class="font-bold text-lg mb-2">¿Olvidaste tu contraseña?</h5>
           <span class="text-xs text-balance text-black/50">
-            Enter your email and we will send you a link to return to your
-            account.
+            Introduce tu email y te enviaremos un enlace para volver a ingresar
+            a tu cuenta.
           </span>
         </header>
 
@@ -87,7 +87,8 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
           <UButton
             type="submit"
             size="lg"
-            color="color-3"
+            class="!bg-color-1 hover:!bg-color-1-700"
+            :ui="{ rounded: 'rounded-sm' }"
             :disabled="isDisabled || isLoading"
             >Enviar link
             <template #leading>
@@ -100,7 +101,7 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
 
     <section class="flex justify-center mt-12">
       <NuxtLink class="text-sm underline md:text-base" to="/auth/login">
-        Go back to log in
+        Iniciar sesión
       </NuxtLink>
     </section>
   </UContainer>
