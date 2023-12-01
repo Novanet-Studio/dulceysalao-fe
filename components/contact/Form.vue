@@ -91,7 +91,7 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
           flex
           justify-center
         >
-          Send
+          Enviar
         </UButton>
       </div>
     </UForm>

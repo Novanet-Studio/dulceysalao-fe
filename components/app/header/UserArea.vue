@@ -5,35 +5,41 @@ const router = useRouter();
 const items = [
   [
     {
-      label: 'Orders',
+      label: 'Órdenes',
       icon: 'i-ph-receipt',
       click: () => {
         router.push('/invoices');
       },
     },
     {
-      label: 'Directions',
+      label: 'Direcciones',
       icon: 'i-ph-road-horizon',
       click: () => {
         router.push('/addresses');
       },
     },
     {
-      label: 'Shopping cart',
+      label: 'Carrito de compras',
       icon: 'i-ph-shopping-cart',
       click: () => {
         router.push('/shopping-cart');
       },
     },
     {
-      label: 'Wishilist',
+      label: 'Lista de deseo',
       icon: 'i-ph-heart',
       click: () => {
         router.push('/wishlist');
       },
     },
   ],
-  [{ label: 'Sign out', icon: 'i-ph-sign-out', click: () => auth.logout() }],
+  [
+    {
+      label: 'Cerrar sesión',
+      icon: 'i-ph-sign-out',
+      click: () => auth.logout(),
+    },
+  ],
 ];
 </script>
 
@@ -46,8 +52,10 @@ const items = [
     </div>
 
     <div class="user-area__links-group">
-      <NuxtLink to="/auth/login" class="user-area__link">Login</NuxtLink>
-      <NuxtLink to="/auth/register" class="user-area__link">Sign up</NuxtLink>
+      <NuxtLink to="/auth/login" class="user-area__link">Entrar</NuxtLink>
+      <NuxtLink to="/auth/register" class="user-area__link"
+        >Registrarse</NuxtLink
+      >
     </div>
   </div>
   <UDropdown

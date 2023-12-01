@@ -151,7 +151,7 @@ onMounted(() => {
             size="lg"
             color="color-3"
             :disabled="isDisabled || isLoading"
-            >Send
+            >Enviar
             <template #leading>
               <AppLoader v-if="isLoading" />
             </template>

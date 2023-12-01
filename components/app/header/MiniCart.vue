@@ -94,7 +94,7 @@ function handleRemoveProductFromCart(id: string) {
               </figure>
             </div>
           </div>
-          <div v-else class="mini-cart__empty">The cart is empty</div>
+          <div v-else class="mini-cart__empty">El carrito está vacío</div>
         </div>
       </template>
     </UPopover>

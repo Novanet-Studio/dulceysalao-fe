@@ -89,7 +89,7 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
             size="lg"
             color="color-3"
             :disabled="isDisabled || isLoading"
-            >Send link
+            >Enviar link
             <template #leading>
               <AppLoader v-if="isLoading" />
             </template>
