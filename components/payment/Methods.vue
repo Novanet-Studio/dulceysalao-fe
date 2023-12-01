@@ -5,12 +5,8 @@ const items = [
     label: 'Pago movil',
   },
   {
-    slot: 'trans-bofa',
-    label: 'Trans BoFa',
-  },
-  {
-    slot: 'venmo',
-    label: 'Venmo',
+    slot: 'transferency',
+    label: 'Transferencia',
   },
   {
     slot: 'zelle',
@@ -35,10 +31,10 @@ const items = [
     }"
   >
     <template #pago-movil>
-      <LazyPaymentPagoMovil />
+      <LazyPaymentVes />
     </template>
-    <template #trans-bofa>
-      <LazyPaymentTransBofa />
+    <template #transferency>
+      <LazyPaymentVes method="transferencia" />
     </template>
     <template #venmo>
       <LazyPaymentVenmo />

@@ -4,6 +4,13 @@ const cartStore = useCartStore();
 const { bcvUsd } = await useGetBcvUsd(cartStore.amount);
 const amountRate = computed(() => cartStore.amount * bcvUsd.value);
 
+const props = withDefaults(
+  defineProps<{ method: 'pago_movil' | 'transferencia' }>(),
+  {
+    method: 'pago_movil',
+  }
+);
+
 const { copied, copy } = useClipboard({
   legacy: true,
 });
@@ -16,7 +23,7 @@ const formatToVES = (value: number) =>
 
 const { state, schema, isSending, submit } = usePaymentForm({
   equalAmountTo: amountRate.value.toString(),
-  method: 'pago_movil',
+  method: props.method,
   payment: {
     validation: (data) =>
       Date.parse(data.date) > Date.parse(new Date().toISOString()),
