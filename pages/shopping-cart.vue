@@ -39,7 +39,7 @@ const loadCartProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
 
   if (!itemsId.length) {
-    // product.cartProducts = null;
+    product.cartProducts = null;
     return;
   }
 
