@@ -18,7 +18,7 @@ query GetProductById($id: ID!) {
             }
           }
         }
-        category {
+        categories {
           data {
             id
             attributes {

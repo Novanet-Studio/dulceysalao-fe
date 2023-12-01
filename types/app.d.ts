@@ -117,7 +117,7 @@ interface ProductAttributes {
   size: string;
   materials: string;
   price: number;
-  category: CategoryAttributes;
+  categories: CategoryAttributes[];
   gluten_free: boolean;
   stock: number;
 }

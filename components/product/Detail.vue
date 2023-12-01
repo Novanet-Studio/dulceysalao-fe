@@ -8,7 +8,7 @@ const showLightbox = ref(false);
 <template>
   <section class="product-wrapper">
     <AppTitle>
-      {{ product?.category.name }}
+      {{ product?.categories.map((category) => category.name).join(' - ') }}
     </AppTitle>
 
     <div class="product-detail">
