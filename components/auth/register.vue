@@ -39,7 +39,7 @@ const formRef = ref();
 const formSchema = object({
   email: string([
     minLength(1, 'Campo es requerido'),
-    email('Email is invalid'),
+    email('El correo electrónico es inválido'),
   ]),
   username: nonNullable(
     string([

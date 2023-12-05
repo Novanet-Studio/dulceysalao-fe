@@ -41,7 +41,7 @@ const formSchema = object({
   lastName: string([minLength(1, 'Campo es requerido')]),
   email: string([
     minLength(1, 'Campo es requerido'),
-    email('Email is invalid'),
+    email('El correo electrónico es inválido'),
   ]),
   address: string([minLength(1, 'Campo es requerido')]),
   country: any(),
