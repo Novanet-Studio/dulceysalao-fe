@@ -11,7 +11,7 @@ export default defineAppConfig({
   },
   footer: {
     copyright: {
-      site: 'dulceysalao.com',
+      site: 'dulceysalao.com.ve',
     },
     widgets: [
       {
