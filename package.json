@@ -31,12 +31,11 @@
   },
   "dependencies": {
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
-    "@nuxt/image": "^1.0.0",
-    "@nuxt/ui": "^2.9.0",
-    "@nuxtjs/strapi": "^1.9.3",
+    "@nuxt/image": "^1.1.0",
+    "@nuxt/ui": "^2.11.0",
+    "@nuxtjs/strapi": "^1.10.1",
     "@paypal/paypal-js": "^7.0.3",
     "@pinia/nuxt": "^0.5.1",
-    
     "@vee-validate/valibot": "^4.11.8",
     "markdown-it": "^13.0.2",
     "smapper": "^0.0.9",
