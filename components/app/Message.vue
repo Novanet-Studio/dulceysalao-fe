@@ -33,7 +33,7 @@ const mode = computed<string>(() => {
   @apply w-full mt-12 text-white shadow  bg-color-1;
 }
 .default__message--bg {
-  @apply bg-[url('/patron-test.svg')] bg-contain bg-no-repeat bg-right;
+  @apply bg-[url('/pattern-message.svg')] bg-contain bg-no-repeat bg-right;
 }
 
 h3 {

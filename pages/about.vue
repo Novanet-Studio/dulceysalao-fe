@@ -14,7 +14,9 @@ definePageMeta({
 <template>
   <AppSlider :items="appConfig.nosotros.slider" />
   <div class="about__wrapper">
-    <AppMessage class="default__message">Nuestra historia</AppMessage>
+    <AppMessage class="default__message default__message--bg" mode="normal"
+      >Nuestra historia</AppMessage
+    >
     <div class="about__member">
       <div class="about__image-wrapper">
         <img
@@ -70,13 +72,13 @@ definePageMeta({
   @apply w-full self-start;
 }
 .about__paragraph {
-  @apply text-lg text-[#5A5A5A] 
-  lg:text-2xl lg:leading-10;
+  @apply text-lg text-[#5A5A5A] mb-6
+  lg:text-xl lg:leading-8;
 }
 .about__paragraph--member {
   @apply flex flex-col gap-4 md:w-3/4;
 }
 .about__paragraph--full {
-  @apply mt-8;
+  @apply border-t-2 border-color-2 pt-4;
 }
 </style>
