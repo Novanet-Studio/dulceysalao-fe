@@ -12,28 +12,6 @@ const graphql = useStrapiGraphQL();
 const cart = useCartStore();
 const product = useProductStore();
 
-const handleIncreaseQuantity = (id: string) => {
-  cart.cartItems = cart.cartItems.map((item) =>
-    item.id === id
-      ? {
-          ...item,
-          quantity: item.quantity + 1,
-        }
-      : item
-  );
-};
-
-const handleDescreaseQuantity = (id: string) => {
-  cart.cartItems = cart.cartItems.map((item) =>
-    item.id === id
-      ? {
-          ...item,
-          quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity,
-        }
-      : item
-  );
-};
-
 const loadCartProducts = async () => {
   const temp: any[] = [];
   const itemsId = cart.cartItems.map((item) => item.id);
@@ -170,8 +148,8 @@ onMounted(() => {
       <template #amount-data="{ row }">
         <CustomQuantity
           v-model="row.amount"
-          @increase="handleIncreaseQuantity(row.id)"
-          @descrease="handleDescreaseQuantity(row.id)"
+          @increase="cart.increaseCartItemQuantity(row.id)"
+          @descrease="cart.decreaseCartItemQuantity(row.id)"
         />
       </template>
       <template #total-data="{ row }">
