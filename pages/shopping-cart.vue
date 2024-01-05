@@ -39,6 +39,13 @@ const loadCartProducts = async () => {
   product.cartProducts = strapiMapper(temp) as Product[];
 };
 
+function getTotalQuantity(row: { id: string; price: number }) {
+  const quantity =
+    cart.cartItems.find((item) => item.id === row.id)?.quantity || 1;
+
+  return quantity * row.price;
+}
+
 const sectionTitle = inject('sectionTitle') as Ref<string>;
 
 sectionTitle.value = 'Carrito de compras';
@@ -154,9 +161,9 @@ onMounted(() => {
       </template>
       <template #total-data="{ row }">
         <span class="text-red-500 font-semibold" v-if="row.isInvalid">{{
-          row.price
+          getTotalQuantity(row)
         }}</span>
-        <span v-else>{{ row.price }}</span>
+        <span v-else>{{ getTotalQuantity(row) }}</span>
       </template>
       <template #actions-data="{ row }">
         <UButton
