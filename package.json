@@ -22,7 +22,7 @@
     "@vueuse/nuxt": "^10.5.0",
     "add": "^2.0.6",
     "graphql": "^16.8.1",
-    "nuxt": "^3.8.2",
+    "nuxt": "^3.9.0",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "vue": "^3.3.7",
@@ -34,14 +34,14 @@
     "@nuxt/image": "^1.1.0",
     "@nuxt/ui": "^2.11.0",
     "@nuxtjs/strapi": "^1.10.1",
-    "@paypal/paypal-js": "^7.0.3",
+    "@paypal/paypal-js": "^8.0.0",
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/valibot": "^4.11.8",
-    "markdown-it": "^13.0.2",
+    "markdown-it": "^14.0.0",
     "smapper": "^0.0.9",
     "square": "^33.0.0",
     "swiper": "^11.0.3",
-    "valibot": "^0.22.0",
+    "valibot": "^0.25.0",
     "vee-validate": "^4.11.8"
   }
 }
