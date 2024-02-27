@@ -9,7 +9,7 @@ import {
 } from 'valibot';
 import countries from '~/data/countries.json';
 import { AddressType } from '~/config/constants';
-import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types';
+import type { FormSubmitEvent } from '#ui/types';
 
 const props = defineProps<{ type: AddressType }>();
 const auth = useAuthStore();

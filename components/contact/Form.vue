@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { object, string, email, minLength, type Output } from 'valibot';
-import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types';
+import type { FormSubmitEvent } from '#ui/types';
 
 const router = useRouter();
 

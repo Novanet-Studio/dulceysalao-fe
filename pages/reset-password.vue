@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { object, string, minLength, regex, type Output } from 'valibot';
 import { PASSWORD_REGEX } from '@/config/constants';
-import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types';
+import type { FormSubmitEvent } from '#ui/types';
 
 type FormData = Output<typeof schema>;
 

@@ -10,7 +10,7 @@ import {
   type Output,
 } from 'valibot';
 import { PASSWORD_REGEX } from '~/config/constants';
-import type { FormSubmitEvent } from '@nuxt/ui/dist/runtime/types';
+import type { FormSubmitEvent } from '#ui/types';
 
 definePageMeta({
   pageTransition: {
