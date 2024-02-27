@@ -30,7 +30,7 @@ onMounted(() => {
 <template>
   <section class="container">
     <h6 class="font-bold text-center">Email enviado</h6>
-    <p class="text-sm mt-4 text-black/70">
+    <p class="text-sm mt-4 text-black/70 lg:text-center">
       Enviamos un correo electrónico a
       <span class="font-bold">{{ formattedEmail }}</span> con un enlace para
       volver a ingresar a su cuenta.
