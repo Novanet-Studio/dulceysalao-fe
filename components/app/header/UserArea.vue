@@ -2,6 +2,9 @@
 const auth = useAuthStore();
 const router = useRouter();
 
+// login | register | recover
+const mode = ref('login');
+
 const items = [
   [
     {
@@ -44,7 +47,7 @@ const items = [
 </script>
 
 <template>
-  <div v-if="!auth.authenticated" class="user-area">
+  <!-- <div v-if="!auth.authenticated" class="user-area">
     <div class="user-area__icon-wrapper">
       <NuxtLink to="/auth/login">
         <UIcon name="i-ph-user" class="user-area__icon" />
@@ -57,6 +60,22 @@ const items = [
         >Registrarse</NuxtLink
       >
     </div>
+  </div> -->
+  <div v-if="!auth.authenticated" class="user-area">
+    <UPopover>
+      <div class="user-area__icon-wrapper">
+        <UIcon name="i-ph-user" class="user-area__icon" />
+      </div>
+      <template #panel>
+        <AuthLogin
+          v-if="mode === 'login'"
+          @forget-click="mode = 'recover'"
+          @new-client-click="mode = 'register'"
+        />
+        <AuthRegister v-if="mode === 'register'" @login="mode = 'login'" />
+        <AuthForgotPassword v-if="mode === 'recover'" @click="mode = 'login'" />
+      </template>
+    </UPopover>
   </div>
   <UDropdown
     :items="items"

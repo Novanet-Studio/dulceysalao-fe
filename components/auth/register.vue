@@ -12,6 +12,12 @@ import {
 import { PASSWORD_REGEX } from '~/config/constants';
 import type { FormSubmitEvent } from '#ui/types';
 
+type Emits = {
+  (e: 'login'): void;
+};
+
+defineEmits<Emits>();
+
 definePageMeta({
   pageTransition: {
     name: 'page',
@@ -39,18 +45,18 @@ const formRef = ref();
 const formSchema = object({
   email: string([
     minLength(1, 'Campo es requerido'),
-    email('El correo electrónico es inválido'),
+    email('Email no es válido'),
   ]),
   username: nonNullable(
     string([
       minLength(1, 'Campo es requerido'),
-      minLength(2, 'El nombre de usuario es demasiado corto'),
-      maxLength(10, 'El nombre de usuario es demasiado largo'),
+      minLength(2, 'El nombre de usuario es muy corto'),
+      maxLength(10, 'El nombre de usuario es muy largo'),
     ])
   ),
   password: string([
     minLength(1, 'Campo es requerido'),
-    regex(PASSWORD_REGEX, 'La contraseña no cumple con los requisitos'),
+    regex(PASSWORD_REGEX, 'Las contraseña no cumple con los requisitos'),
   ]),
   confirmPassword: string([minLength(1, 'Campo es requerido')]),
 });
@@ -77,7 +83,7 @@ const submit = async (event: FormSubmitEvent<FormData>) => {
         icon: 'i-ph-x-circle-duotone',
         title: 'Error',
         description:
-          'Se ha producido un error al registrarse, inténtelo de nuevo',
+          'Hubo un error mientras se registraba, por favor intente de nuevo',
         color: 'red',
       });
       resetState();
@@ -101,7 +107,7 @@ const submit = async (event: FormSubmitEvent<FormData>) => {
       icon: 'i-ph-x-circle-duotone',
       title: 'Error',
       description:
-        'Ocurrió un error al registrarte, por favor intenta nuevamente',
+        'Un error ha ocurrido mientras se registraba, por favor intente de nuevo',
       color: 'red',
     });
   } finally {
@@ -127,20 +133,18 @@ watchEffect(() => {
 </script>
 
 <template>
-  <UContainer>
-    <UCard
-      class="max-w-md mx-auto shadow-xl border-none ring-0 ring-transparent px-4"
-    >
+  <UContainer class="lg:px-4">
+    <UCard class="max-w-xs mx-auto border-none shadow-none ring-0">
       <UForm ref="formRef" :schema="formSchema" :state="state" @submit="submit">
         <header class="flex justify-center mb-6">
-          <h5 class="font-normal text-lg text-gray-600">Crea tu cuenta</h5>
+          <h5 class="font-bold text-lg">Crea tu cuenta</h5>
         </header>
 
-        <UFormGroup class="mb-4" label="Usuario" name="username">
+        <UFormGroup class="mb-4" label="User" name="username">
           <UInput icon="i-ph-user-duotone" size="lg" v-model="state.username" />
         </UFormGroup>
 
-        <UFormGroup class="mb-4" label="Correo" name="email">
+        <UFormGroup class="mb-4" label="Email" name="email">
           <UInput
             icon="i-ph-envelope-duotone"
             size="lg"
@@ -148,7 +152,7 @@ watchEffect(() => {
           />
         </UFormGroup>
 
-        <UFormGroup class="mb-4" label="Contraseña" name="password">
+        <UFormGroup class="mb-4" label="Password" name="password">
           <UInput
             icon="i-ph-lock-duotone"
             :type="showPasswords ? 'text' : 'password'"
@@ -175,7 +179,7 @@ watchEffect(() => {
 
         <UFormGroup
           class="mb-4"
-          label="Confirmar contraseña"
+          label="Confirm password"
           name="confirmPassword"
         >
           <UInput
@@ -186,17 +190,14 @@ watchEffect(() => {
           />
         </UFormGroup>
 
-        <UCheckbox label="Mostrar contraseñas" v-model="showPasswords" />
+        <UCheckbox label="Show passwords" v-model="showPasswords" />
 
         <div class="mt-8 flex justify-center">
           <UButton
-            class="!bg-color-1 hover:!bg-color-1-700"
             type="submit"
             size="lg"
+            color="color-3"
             :disabled="isDisabled || isLoading"
-            :ui="{
-              rounded: 'rounded-none',
-            }"
             >Enviar
             <template #leading>
               <AppLoader v-if="isLoading" />
@@ -204,6 +205,18 @@ watchEffect(() => {
           </UButton>
         </div>
       </UForm>
+
+      <section class="mt-6">
+        <div class="text-sm text-center">
+          ¿Ya tienes una cuenta?
+          <UButton
+            label="Acceder"
+            color="black"
+            variant="link"
+            @click="$emit('login')"
+          />
+        </div>
+      </section>
     </UCard>
   </UContainer>
 </template>
