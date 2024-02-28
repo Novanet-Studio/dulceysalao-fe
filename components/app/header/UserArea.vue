@@ -47,20 +47,6 @@ const items = [
 </script>
 
 <template>
-  <!-- <div v-if="!auth.authenticated" class="user-area">
-    <div class="user-area__icon-wrapper">
-      <NuxtLink to="/auth/login">
-        <UIcon name="i-ph-user" class="user-area__icon" />
-      </NuxtLink>
-    </div>
-
-    <div class="user-area__links-group">
-      <NuxtLink to="/auth/login" class="user-area__link">Entrar</NuxtLink>
-      <NuxtLink to="/auth/register" class="user-area__link"
-        >Registrarse</NuxtLink
-      >
-    </div>
-  </div> -->
   <div v-if="!auth.authenticated" class="user-area">
     <UPopover>
       <div class="user-area__icon-wrapper">

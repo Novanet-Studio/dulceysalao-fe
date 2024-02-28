@@ -1,7 +1,8 @@
 export default function useAppAuth() {
+  const router = useRouter();
   const token = useStrapiToken();
-  const { setToken, setUser } = useStrapiAuth();
   const authStore = useAuthStore();
+  const { setToken, setUser } = useStrapiAuth();
 
   onMounted(async () => {
     if (!authStore.token && (!authStore.user?.id || !authStore.authenticated)) {
@@ -22,7 +23,7 @@ export default function useAppAuth() {
           'Tu sesión ha expirado. Por favor inicia sesión nuevamente',
         color: 'orange',
       });
-      router.push('/auth/login');
+      router.push('/');
       return;
     }
   });

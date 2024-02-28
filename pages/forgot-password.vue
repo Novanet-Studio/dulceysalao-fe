@@ -100,7 +100,7 @@ const submit = async ({ data }: FormSubmitEvent<FormData>) => {
     </UCard>
 
     <section class="flex justify-center mt-12">
-      <NuxtLink class="text-sm underline md:text-base" to="/auth/login">
+      <NuxtLink class="text-sm underline md:text-base" to="/">
         Iniciar sesión
       </NuxtLink>
     </section>
