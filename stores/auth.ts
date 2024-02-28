@@ -1,7 +1,17 @@
 import services from '~/services';
 import config from '~/config/config.json';
 import { LoginQuery, RegisterQuery } from '~/graphql/mutations';
-import type { StrapiUser } from '@nuxtjs/strapi/dist/runtime/types';
+
+type StrapiUser = {
+  id: number | null;
+  username?: string;
+  email?: string;
+  provider?: string;
+  confirmed?: boolean;
+  blocked?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+} | null;
 
 type User = StrapiUser & {
   customerId: string;
@@ -20,7 +30,7 @@ export const useAuthStore = defineStore(
 
     const token = ref('');
     const user = reactive<User>({
-      id: 0,
+      id: null,
       customerId: '',
     });
 
