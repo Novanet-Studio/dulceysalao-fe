@@ -88,8 +88,9 @@ const fillFormFromStorage = () => {
 
 const fillFormFromStrapiShippingData = async () => {
   try {
+    const id = auth?.user?.id ?? '';
     const body = {
-      id: +auth.user.id,
+      id: +id,
       type: AddressType.Shipping,
     };
 

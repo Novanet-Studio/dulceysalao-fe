@@ -1,6 +1,6 @@
 query GetInvoicesByEmail($email: String!, $page: Int, $pageSize: Int) {
   invoices(
-    filters: { payment_info: { email: { eq: $id } } }
+    filters: { payment_info: { email: { eq: $email } } }
     pagination: { page: $page, pageSize: $pageSize }
     sort: "id:asc"
   ) {

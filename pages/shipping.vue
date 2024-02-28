@@ -1,9 +1,3 @@
-<script setup>
-definePageMeta({
-  middleware: 'authentication',
-});
-</script>
-
 <template>
   <section class="mt-20 container mb-20">
     <AppTitle>Información de envío</AppTitle>
