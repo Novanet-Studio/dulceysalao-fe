@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "dulceysalao.com.ve*"
+  to = "tienda.dulceysalao.com.ve"
+  status = 301 # Permanent redirect
+  force = true
