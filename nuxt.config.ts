@@ -23,6 +23,12 @@ export default defineNuxtConfig({
         lang: 'en',
         class: 'light',
       },
+      meta: [
+        {
+          name: 'http-equiv=refresh',
+          content: '0; url=https://tienda.dulceysalao.com.ve',
+        },
+      ],
       link: [
         {
           rel: 'stylesheet',
