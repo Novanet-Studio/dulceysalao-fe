@@ -25,8 +25,8 @@ export default defineNuxtConfig({
       },
       meta: [
         {
-          name: 'http-equiv=refresh',
-          content: '0; url=https://tienda.dulceysalao.com.ve',
+          'http-equiv': 'refresh',
+          content: '0; url=https://novanet.studio/',
         },
       ],
       link: [
